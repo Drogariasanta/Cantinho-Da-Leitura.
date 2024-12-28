@@ -9,6 +9,7 @@
         .container { width: 90%; margin: auto; padding: 20px; }
         .product { 
             display: flex;
+            flex-wrap: wrap; /* Permite que os itens se ajustem em telas menores */
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
@@ -21,22 +22,49 @@
             max-width: 150px;
             height: auto;
             border-radius: 8px;
+            margin-right: 20px; /* Espaçamento entre imagem e texto */
         }
         .product-info {
             flex: 1;
             margin-left: 20px;
         }
         h1 { text-align: center; }
+        
+        /* Estilo do botão */
         a {
             text-decoration: none;
             color: white;
             background-color: #25d366;
-            padding: 10px 15px;
+            padding: 8px 15px;
             border-radius: 5px;
             font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            width: auto;
+            max-width: 100%;
         }
+        
         a:hover {
             background-color: #1da851;
+        }
+
+        /* Ajustes para dispositivos móveis */
+        @media (max-width: 768px) {
+            .product {
+                flex-direction: column; /* Organiza os itens de forma vertical em telas pequenas */
+                align-items: flex-start;
+            }
+
+            .product img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            a {
+                width: 100%; /* O botão ocupa a largura total disponível */
+                padding: 12px 20px; /* Aumenta o tamanho do botão em telas menores */
+                font-size: 16px; /* Ajusta o tamanho da fonte */
+            }
         }
     </style>
 </head>
@@ -50,7 +78,7 @@
             <div class="product-info">
                 <h2>Produto 1</h2>
                 <p>Descrição do produto 1.</p>
-                <p><strong>R$ 100,00</strong></p>
+                <p><strong>R$ 157,99</strong></p>
                 <a href="https://wa.me/35988490590?text=Olá,%20tenho%20interesse%20no%20Produto%201" target="_blank">Entrar em Contato</a>
             </div>
         </div>
@@ -61,7 +89,7 @@
             <div class="product-info">
                 <h2>Produto 2</h2>
                 <p>Descrição do produto 2.</p>
-                <p><strong>R$ 200,00</strong></p>
+                <p><strong>R$ 81,99</strong></p>
                 <a href="https://wa.me/35988490590?text=Olá,%20tenho%20interesse%20no%20Produto%202" target="_blank">Entrar em Contato</a>
             </div>
         </div>

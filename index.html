@@ -65,7 +65,7 @@
         .product {
             display: inline-block;
             background: white;
-            margin: 10px;
+            margin: 20px;
             padding: 15px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -74,7 +74,7 @@
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-sizing: border-box;
-            height: 350px;
+            height: 400px;
             position: relative;
         }
         .product:hover {
@@ -129,6 +129,9 @@
         .active {
             display: block;
         }
+        .show-details {
+            display: block;
+        }
         @media (max-width: 768px) {
             .product {
                 width: calc(50% - 40px);
@@ -162,7 +165,7 @@
         <div id="todos" class="category active">
             <h2>Todos os Produtos</h2>
             <!-- Produtos de Todas as Categorias -->
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
                 <h3>Kit Jogo Alquimia</h3>
                 <p>Explore a ciência com 45 experiências fascinantes!</p>
@@ -172,7 +175,7 @@
                     <p>Este kit proporciona experiências científicas incríveis para todas as idades.</p>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
                 <h3>Kit Truque de Mestre</h3>
                 <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
@@ -182,7 +185,7 @@
                     <p>Aprenda truques de mágica para impressionar seus amigos e familiares.</p>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
                 <h3>Quebra-Cabeça 500 peças</h3>
                 <p>Monte cenários incríveis com este desafio!</p>
@@ -193,7 +196,7 @@
                 </div>
             </div>
             <!-- Produtos de Bonecas -->
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
                 <h3>Boneca Fashion Girl</h3>
                 <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
@@ -203,7 +206,7 @@
                     <p>Boneca cheia de estilo para suas brincadeiras.</p>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/boneca2.jpg" alt="Boneca Fashion Model">
                 <h3>Boneca Fashion Model</h3>
                 <p>Com roupas e acessórios incríveis para arrasar!</p>
@@ -213,7 +216,7 @@
                     <p>Boneca com vários acessórios para um visual moderno.</p>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/boneca3.jpg" alt="Boneca Superstar">
                 <h3>Boneca Superstar</h3>
                 <p>Para quem ama brilhar com muito glamour!</p>
@@ -224,7 +227,7 @@
                 </div>
             </div>
             <!-- Produtos Eletrônicos -->
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/eletronico1.jpg" alt="Fone Bluetooth">
                 <h3>Fone Bluetooth</h3>
                 <p>Qualidade de som com total liberdade de movimento.</p>
@@ -234,7 +237,7 @@
                     <p>Fone Bluetooth com ótima qualidade de som e conforto.</p>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/eletronico2.jpg" alt="Smartwatch">
                 <h3>Smartwatch</h3>
                 <p>Monitore sua saúde e estilo com um relógio inteligente.</p>
@@ -244,7 +247,7 @@
                     <p>Relógio inteligente para monitoramento de saúde e notificações.</p>
                 </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/eletronico3.jpg" alt="Carregador Portátil">
                 <h3>Carregador Portátil</h3>
                 <p>Carregue seu dispositivo em qualquer lugar com facilidade.</p>
@@ -262,6 +265,11 @@
             const categories = document.querySelectorAll('.category');
             categories.forEach(cat => cat.classList.remove('active'));
             document.getElementById(category).classList.add('active');
+        }
+
+        function toggleDetails(product) {
+            const details = product.querySelector('.product-details');
+            details.classList.toggle('show-details');
         }
     </script>
 </body>

@@ -12,7 +12,7 @@
             background: #f7f7f7;
             color: #333;
             box-sizing: border-box;
-            overflow-x: hidden; /* Impede o zoom horizontal */
+            overflow-x: hidden;
         }
         header {
             background: #005fa3;
@@ -27,12 +27,12 @@
         }
         nav {
             display: flex;
-            overflow-x: auto;  /* Habilita o deslizamento horizontal */
+            overflow-x: auto;
             background: #0077cc;
             padding: 10px 0;
             width: 100%;
             box-sizing: border-box;
-            white-space: nowrap; /* Impede quebra de linha entre os itens */
+            white-space: nowrap;
             align-items: center;
         }
         nav a {
@@ -42,7 +42,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: background 0.3s ease;
-            white-space: nowrap; /* Impede quebra de linha no link */
+            white-space: nowrap;
             font-size: 1em;
         }
         nav a:hover {
@@ -74,6 +74,7 @@
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-sizing: border-box;
+            height: 350px; /* Garantir altura fixa para todos os produtos */
         }
         .product:hover {
             transform: translateY(-10px);
@@ -187,6 +188,20 @@
                 <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
             </div>
             <div class="product">
+                <img src="images/boneca2.jpg" alt="Boneca Princesa">
+                <h3>Boneca Princesa</h3>
+                <p>Boneca elegante com vestido de princesa.</p>
+                <div class="price">R$ 120,00</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/boneca3.jpg" alt="Boneca Estilo Vintage">
+                <h3>Boneca Estilo Vintage</h3>
+                <p>Boneca de estilo retrô para colecionadores.</p>
+                <div class="price">R$ 110,00</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
                 <img src="images/eletronico1.jpg" alt="Fone de Ouvido Bluetooth">
                 <h3>Fone de Ouvido Bluetooth</h3>
                 <p>Ouça música sem fio com qualidade de som incrível!</p>
@@ -222,7 +237,27 @@
 
         <div id="bonecas" class="category">
             <h2>Bonecas</h2>
-            <!-- Produtos de Bonecas aqui -->
+            <div class="product">
+                <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
+                <h3>Boneca Fashion Girl</h3>
+                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+                <div class="price">R$ 89,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/boneca2.jpg" alt="Boneca Princesa">
+                <h3>Boneca Princesa</h3>
+                <p>Boneca elegante com vestido de princesa.</p>
+                <div class="price">R$ 120,00</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/boneca3.jpg" alt="Boneca Estilo Vintage">
+                <h3>Boneca Estilo Vintage</h3>
+                <p>Boneca de estilo retrô para colecionadores.</p>
+                <div class="price">R$ 110,00</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
         </div>
 
         <div id="eletronicos" class="category">

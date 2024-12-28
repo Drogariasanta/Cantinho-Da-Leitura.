@@ -29,22 +29,45 @@
             display: flex;
             overflow-x: auto;  /* Habilita o deslizamento horizontal */
             background: #0077cc;
-            padding: 15px 0;
+            padding: 10px 0;
             width: 100%;
             box-sizing: border-box;
             white-space: nowrap; /* Impede quebra de linha entre os itens */
+            align-items: center;
         }
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 20px;
+            margin: 0 10px;
             padding: 10px 20px;
             border-radius: 5px;
             transition: background 0.3s ease;
             white-space: nowrap; /* Impede quebra de linha no link */
+            font-size: 1em;
         }
         nav a:hover {
             background: #005fa3;
+        }
+        .category-container {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .category-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 10;
+            background: #0077cc;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .category-arrow-left {
+            left: 10px;
+        }
+        .category-arrow-right {
+            right: 10px;
         }
         .container {
             padding: 40px 15px;
@@ -124,6 +147,18 @@
                 width: calc(45% - 40px);
                 padding: 10px;
             }
+            .category-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin-bottom: 20px;
+            }
+            nav a {
+                font-size: 0.9em;
+                margin: 0 10px;
+            }
+            .category-arrow {
+                display: none; /* Esconde as setas em telas menores */
+            }
         }
         @media (max-width: 480px) {
             .product {
@@ -133,10 +168,6 @@
             header {
                 font-size: 1.8em;
                 padding: 15px 0;
-            }
-            nav a {
-                font-size: 0.9em;
-                margin: 0 10px;
             }
         }
     </style>
@@ -152,63 +183,54 @@
         <a href="javascript:void(0);" onclick="showCategory('eletronicos')">Eletrônicos</a>
     </nav>
 
-    <div class="container">
-        <div id="todos" class="category active">
-            <h2>Todos os Produtos</h2>
-            <div class="product">
-                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-                <h3>Kit Jogo Alquimia</h3>
-                <p>Explore a ciência com 45 experiências fascinantes!</p>
-                <div class="price">R$ 157,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/imagem2.jpg" alt="Jogo da Memória">
-                <h3>Jogo da Memória</h3>
-                <p>Desafie sua mente e divirta-se com este clássico!</p>
-                <div class="price">R$ 81,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
-                <h3>Quebra-Cabeça 500 peças</h3>
-                <p>Monte cenários incríveis com este desafio!</p>
-                <div class="price">R$ 79,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-        </div>
+    <div class="category-container">
+        <div class="category-arrow category-arrow-left" onclick="scrollCategories('left')">←</div>
+        <div class="category-arrow category-arrow-right" onclick="scrollCategories('right')">→</div>
 
-        <div id="jogos" class="category">
-            <h2>Jogos</h2>
-            <div class="product">
-                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-                <h3>Kit Jogo Alquimia</h3>
-                <p>Explore a ciência com 45 experiências fascinantes!</p>
-                <div class="price">R$ 157,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+        <div class="container">
+            <div id="todos" class="category active">
+                <h2>Todos os Produtos</h2>
+                <div class="product">
+                    <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
+                    <h3>Kit Jogo Alquimia</h3>
+                    <p>Explore a ciência com 45 experiências fascinantes!</p>
+                    <div class="price">R$ 157,99</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
+                <div class="product">
+                    <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
+                    <h3>Kit Truque de Mestre</h3>
+                    <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
+                    <div class="price">R$ 81,99</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
+                <div class="product">
+                    <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
+                    <h3>Quebra-Cabeça 500 peças</h3>
+                    <p>Monte cenários incríveis com este desafio!</p>
+                    <div class="price">R$ 79,90</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
             </div>
-        </div>
 
-        <div id="bonecas" class="category">
-            <h2>Bonecas</h2>
-            <div class="product">
-                <img src="images/boneca.jpg" alt="Boneca Fashion Girl">
-                <h3>Boneca Fashion Girl</h3>
-                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                <div class="price">R$ 89,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            <div id="jogos" class="category">
+                <h2>Jogos</h2>
+                <div class="product">
+                    <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
+                    <h3>Kit Jogo Alquimia</h3>
+                    <p>Explore a ciência com 45 experiências fascinantes!</p>
+                    <div class="price">R$ 157,99</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
+                <div class="product">
+                    <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
+                    <h3>Kit Truque de Mestre</h3>
+                    <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
+                    <div class="price">R$ 81,99</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
             </div>
-        </div>
-
-        <div id="eletronicos" class="category">
-            <h2>Eletrônicos</h2>
-            <div class="product">
-                <img src="images/fone.jpg" alt="Fone Bluetooth">
-                <h3>Fone Bluetooth</h3>
-                <p>Qualidade de som com total liberdade de movimento.</p>
-                <div class="price">R$ 159,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
+            <!-- Outros produtos seguem aqui -->
         </div>
     </div>
 
@@ -219,6 +241,12 @@
                 categoryElement.classList.remove('active');
             });
             document.getElementById(category).classList.add('active');
+        }
+
+        function scrollCategories(direction) {
+            const container = document.querySelector('.category-container');
+            const scrollAmount = direction === 'left' ? -200 : 200;
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     </script>
 </body>

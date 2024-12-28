@@ -11,64 +11,63 @@
             padding: 0;
             background: #f7f7f7;
             color: #333;
-            box-sizing: border-box;
         }
         header {
             background: #005fa3;
             color: white;
             padding: 20px 0;
             text-align: center;
-            font-size: 2.5em;
+            font-size: 2em;
             letter-spacing: 1px;
-            word-wrap: break-word;
-            width: 100%;
-            box-sizing: border-box;
         }
         nav {
             display: flex;
-            justify-content: center;
+            overflow-x: auto;
             background: #0077cc;
-            padding: 15px 0;
-            width: 100%;
-            box-sizing: border-box;
+            padding: 10px;
+            white-space: nowrap;
+            border-bottom: 2px solid #005fa3;
         }
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 20px;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 5px;
+            margin-right: 10px;
+            background: #005fa3;
+            flex-shrink: 0;
+            font-size: 0.9em;
             transition: background 0.3s ease;
         }
         nav a:hover {
+            background: #003f73;
+        }
+        nav::-webkit-scrollbar {
+            height: 6px;
+        }
+        nav::-webkit-scrollbar-thumb {
+            background: #003f73;
+            border-radius: 3px;
+        }
+        nav::-webkit-scrollbar-track {
             background: #005fa3;
         }
         .container {
-            padding: 40px 15px;
-            width: 100%;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            box-sizing: border-box;
-        }
-        h2 {
-            font-size: 2em;
-            color: #005fa3;
-            margin-bottom: 20px;
-            text-align: center;
-            text-transform: uppercase;
         }
         .product {
             display: inline-block;
             background: white;
-            margin: 20px;
-            padding: 20px;
+            margin: 15px;
+            padding: 15px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: calc(30% - 40px);
-            vertical-align: top;
+            width: calc(30% - 30px);
             text-align: center;
+            vertical-align: top;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-sizing: border-box;
         }
         .product:hover {
             transform: translateY(-10px);
@@ -78,33 +77,30 @@
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .product h3 {
-            font-size: 1.5em;
+            font-size: 1.1em;
             margin: 10px 0;
-            color: #333;
         }
         .product p {
-            font-size: 1em;
-            color: #666;
+            font-size: 0.9em;
             margin-bottom: 10px;
         }
         .product .price {
-            font-size: 1.5em;
+            font-size: 1.1em;
             font-weight: bold;
             color: #0077cc;
-            margin: 10px 0;
         }
         .product a {
             display: inline-block;
-            margin-top: 15px;
-            padding: 12px 25px;
+            margin-top: 10px;
+            padding: 8px 15px;
             color: white;
             background: #0077cc;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 1em;
+            font-size: 0.9em;
             transition: background 0.3s ease;
         }
         .product a:hover {
@@ -112,20 +108,37 @@
         }
         @media (max-width: 768px) {
             .product {
-                width: calc(45% - 40px);
+                width: calc(45% - 30px);
             }
         }
         @media (max-width: 480px) {
-            .product {
-                width: calc(100% - 40px);
-            }
             header {
-                font-size: 1.8em;
+                font-size: 1.5em;
                 padding: 15px 0;
             }
             nav a {
-                font-size: 0.9em;
-                margin: 0 10px;
+                font-size: 0.8em;
+                padding: 6px 10px;
+            }
+            .container {
+                padding: 10px;
+            }
+            .product {
+                width: calc(100% - 30px);
+                margin: 10px auto;
+            }
+            .product h3 {
+                font-size: 1em;
+            }
+            .product p {
+                font-size: 0.85em;
+            }
+            .product .price {
+                font-size: 1em;
+            }
+            .product a {
+                padding: 8px 12px;
+                font-size: 0.8em;
             }
         }
     </style>
@@ -135,84 +148,94 @@
         Drogaria Santa Maria Pinheirinho
     </header>
     <nav>
-        <a href="#jogos">Jogos</a>
-        <a href="#bonecas">Bonecas</a>
-        <a href="#eletronicos">Eletrônicos</a>
+        <a onclick="filterCategory('all')">Todos</a>
+        <a onclick="filterCategory('jogos')">Jogos</a>
+        <a onclick="filterCategory('bonecas')">Bonecas</a>
+        <a onclick="filterCategory('eletronicos')">Eletrônicos</a>
     </nav>
 
-    <div class="container">
-        <h2 id="jogos">Jogos</h2>
-        <div class="product">
+    <div class="container" id="product-container">
+        <!-- Produtos -->
+        <div class="product" data-category="jogos">
             <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
             <h3>Kit Jogo Alquimia</h3>
             <p>Explore a ciência com 45 experiências fascinantes!</p>
             <div class="price">R$ 157,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-        <div class="product">
+        <div class="product" data-category="jogos">
             <img src="images/imagem2.jpg" alt="Jogo da Memória">
             <h3>Jogo da Memória</h3>
-            <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
+            <p>Teste suas habilidades de memória com este clássico jogo!</p>
             <div class="price">R$ 81,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-        <div class="product">
-            <img src="images/agoravai.jpg" alt="Banco Imobiliário Jr">
+        <div class="product" data-category="jogos">
+            <img src="images/imagem3.jpg" alt="Banco Imobiliário Jr">
             <h3>Banco Imobiliário Jr</h3>
-            <p>Banco Imobiliário Jr é a diversão de investir e negociar de forma rápida e divertida, onde crianças podem se tornar grandes investidores!</p>
+            <p>Aprenda a investir e negociar com diversão garantida!</p>
             <div class="price">R$ 169,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <h2 id="bonecas">Bonecas</h2>
-        <div class="product">
-            <img src="images/boneca.jpg" alt="Boneca Fofitinha Baby 100% Vinil">
-            <h3>Boneca Fofitinha Baby 100% Vinil</h3>
-            <p>A Boneca Fofitinha Baby é pura fofura! Feita 100% de vinil, ela é macia, durável e perfeita para abraços e brincadeiras encantadoras.</p>
+        <div class="product" data-category="bonecas">
+            <img src="images/boneca.jpg" alt="Boneca Fofitinha Baby">
+            <h3>Boneca Fofitinha Baby</h3>
+            <p>Fofura garantida com a boneca 100% vinil.</p>
             <div class="price">R$ 37,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <div class="product">
-            <img src="images/boneca2.jpg" alt="Boneca Little Baby Minha Primeira Oração">
-            <h3>Boneca Little Baby Minha Primeira Oração</h3>
-            <p>A Boneca Little Baby Minha Primeira Oração é uma amiga especial que ensina a oração do Pai Nosso, trazendo fé e ternura para as brincadeiras dos pequenos.</p>
+        <div class="product" data-category="bonecas">
+            <img src="images/boneca2.jpg" alt="Boneca Little Baby">
+            <h3>Boneca Little Baby</h3>
+            <p>Acompanha a oração do Pai Nosso para crianças.</p>
             <div class="price">R$ 74,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <div class="product">
-            <img src="images/vaipeloamordedeus.jpg" alt="Boneca Baby Milk Shake M734">
-            <h3>Boneca Baby Milk Shake M734</h3>
-            <p>A Boneca Baby Milk Shake M734 é charmosa e perfeita para as brincadeiras das meninas, trazendo diversão e fofura em cada momento.</p>
+        <div class="product" data-category="bonecas">
+            <img src="images/boneca3.jpg" alt="Boneca Milk Shake">
+            <h3>Boneca Baby Milk Shake</h3>
+            <p>Boneca linda para brincar e se divertir.</p>
             <div class="price">R$ 49,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <h2 id="eletronicos">Eletrônicos</h2>
-        <div class="product">
-            <img src="images/fone.jpg" alt="Fone Bluetooth 5.1">
-            <h3>Fone Bluetooth 5.1</h3>
-            <p>Qualidade de som com total liberdade de movimento.</p>
+        <div class="product" data-category="eletronicos">
+            <img src="images/fone.jpg" alt="Fone Bluetooth">
+            <h3>Fone Bluetooth</h3>
+            <p>Qualidade sonora incrível sem fios.</p>
             <div class="price">R$ 79,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <div class="product">
-            <img src="images/mouse.jpg" alt="Mouse Bluetooth RGB Eletromex EL-2103">
-            <h3>Mouse Bluetooth RGB Eletromex EL-2103</h3>
-            <p>Com design elegante e ergonômico, este mouse sem fio oferece o máximo em conforto e desempenho.</p>
+        <div class="product" data-category="eletronicos">
+            <img src="images/mouse.jpg" alt="Mouse Bluetooth RGB">
+            <h3>Mouse Bluetooth RGB</h3>
+            <p>Design ergonômico e elegante.</p>
             <div class="price">R$ 49,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <div class="product">
-            <img src="images/controle.jpg" alt="Controle Joystick Ipega 9021s">
-            <h3>Controle Joystick Ipega 9021s</h3>
-            <p>O Controle Joystick Ipega 9021s oferece uma experiência de jogo incrível com design ergonômico, compatibilidade ampla e controles precisos, perfeito para quem busca diversão e desempenho.</p>
+        <div class="product" data-category="eletronicos">
+            <img src="images/controle.jpg" alt="Controle Joystick">
+            <h3>Controle Joystick</h3>
+            <p>Experiência de jogo imersiva e confortável.</p>
             <div class="price">R$ 149,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
     </div>
+
+    <script>
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                if (category === 'all' || product.getAttribute('data-category') === category) {
+                    product.style.display = 'inline-block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            filterCategory('all');
+        });
+    </script>
 </body>
 </html>

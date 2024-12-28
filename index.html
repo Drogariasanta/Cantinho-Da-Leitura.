@@ -195,23 +195,120 @@
                     <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
                 </div>
             </div>
-            <!-- Mais produtos -->
         </div>
 
-        <!-- Outras categorias -->
+        <div id="jogos" class="category">
+            <h2>Jogos</h2>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
+                <h3>Kit Jogo Alquimia</h3>
+                <p>Explore a ciência com 45 experiências fascinantes!</p>
+                <div class="price">R$ 157,99</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Este kit proporciona experiências científicas incríveis para todas as idades.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
+                <h3>Kit Truque de Mestre</h3>
+                <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
+                <div class="price">R$ 81,99</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Aprenda truques de mágica para impressionar seus amigos e familiares.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="bonecas" class="category">
+            <h2>Bonecas</h2>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
+                <h3>Boneca Fashion Girl</h3>
+                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+                <div class="price">R$ 89,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Boneca fashion que traz estilo e diversão para suas brincadeiras.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/boneca2.jpg" alt="Boneca Princesa">
+                <h3>Boneca Princesa</h3>
+                <p>Boneca encantada para criar histórias mágicas.</p>
+                <div class="price">R$ 99,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Boneca princesa que traz charme e beleza para suas aventuras.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/boneca3.jpg" alt="Boneca Bebê">
+                <h3>Boneca Bebê</h3>
+                <p>Cuide deste adorável bebê em todas as brincadeiras.</p>
+                <div class="price">R$ 75,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Uma boneca bebê para cuidados e carinhos durante as brincadeiras.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="eletronicos" class="category">
+            <h2>Eletrônicos</h2>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/fone1.jpg" alt="Fone Bluetooth">
+                <h3>Fone Bluetooth</h3>
+                <p>Qualidade de som com total liberdade de movimento.</p>
+                <div class="price">R$ 159,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Fone de ouvido Bluetooth para você aproveitar músicas com liberdade.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/fone2.jpg" alt="Fone Over-Ear">
+                <h3>Fone Over-Ear</h3>
+                <p>Conforto e som de alta qualidade para todos os momentos.</p>
+                <div class="price">R$ 199,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Fone Over-Ear para conforto e som cristalino.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleDetails(this)">
+                <img src="images/fone3.jpg" alt="Fone Sem Fio">
+                <h3>Fone Sem Fio</h3>
+                <p>Fone sem fio com bateria longa duração.</p>
+                <div class="price">R$ 129,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Fone sem fio para praticidade e uso prolongado.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         function showCategory(category) {
-            var categories = document.querySelectorAll('.category');
-            categories.forEach(function(categoryElement) {
-                categoryElement.classList.remove('active');
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(cat => {
+                cat.classList.remove('active');
             });
             document.getElementById(category).classList.add('active');
         }
 
         function toggleDetails(product) {
-            var details = product.querySelector('.product-details');
+            const details = product.querySelector('.product-details');
             details.style.display = details.style.display === 'block' ? 'none' : 'block';
             product.style.height = details.style.display === 'block' ? 'auto' : '350px';
         }

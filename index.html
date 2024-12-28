@@ -6,146 +6,123 @@
     <title>Drogaria Santa Maria Pinheirinho</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background: #f7f7f7;
             color: #333;
+            box-sizing: border-box;
         }
-
         header {
             background: #005fa3;
             color: white;
-            text-align: center;
             padding: 20px 0;
+            text-align: center;
             font-size: 2.5em;
+            letter-spacing: 1px;
+            word-wrap: break-word;
+            width: 100%;
+            box-sizing: border-box;
         }
-
         nav {
             display: flex;
             justify-content: center;
             background: #0077cc;
-            padding: 10px 0;
-            overflow-x: auto;
+            padding: 15px 0;
+            width: 100%;
+            box-sizing: border-box;
         }
-
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 20px;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: background 0.3s ease;
         }
-
         nav a:hover {
             background: #005fa3;
         }
-
         .container {
             padding: 40px 15px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
-
         h2 {
             font-size: 2em;
-            text-align: center;
             color: #005fa3;
             margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
         }
-
         .product {
             display: inline-block;
             background: white;
+            margin: 20px;
             padding: 20px;
-            margin: 15px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: calc(30% - 30px);
-            text-align: center;
+            width: calc(30% - 40px);
             vertical-align: top;
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 380px;
-            position: relative;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
         }
-
         .product:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
-
         .product img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 15px;
         }
-
         .product h3 {
             font-size: 1.5em;
+            margin: 10px 0;
             color: #333;
         }
-
         .product p {
             font-size: 1em;
             color: #666;
             margin-bottom: 10px;
         }
-
         .product .price {
             font-size: 1.5em;
-            color: #0077cc;
             font-weight: bold;
+            color: #0077cc;
+            margin: 10px 0;
         }
-
         .product a {
             display: inline-block;
+            margin-top: 15px;
             padding: 12px 25px;
-            background-color: #0077cc;
             color: white;
+            background: #0077cc;
             text-decoration: none;
             border-radius: 5px;
             font-size: 1em;
-            margin-top: 15px;
+            transition: background 0.3s ease;
         }
-
         .product a:hover {
             background: #005fa3;
         }
-
-        .category-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .category-section .product {
-            width: calc(33% - 40px);
-        }
-
         @media (max-width: 768px) {
             .product {
-                width: calc(45% - 30px);
-            }
-
-            .category-section .product {
-                width: calc(45% - 30px);
+                width: calc(45% - 40px);
             }
         }
-
         @media (max-width: 480px) {
             .product {
-                width: calc(100% - 30px);
+                width: calc(100% - 40px);
             }
-
-            .category-section .product {
-                width: calc(100% - 30px);
-            }
-
             header {
                 font-size: 1.8em;
+                padding: 15px 0;
             }
-
             nav a {
                 font-size: 0.9em;
                 margin: 0 10px;
@@ -157,124 +134,53 @@
     <header>
         Drogaria Santa Maria Pinheirinho
     </header>
-
     <nav>
-        <a href="#" onclick="showCategory('todos')">Todos</a>
-        <a href="#" onclick="showCategory('jogos')">Jogos</a>
-        <a href="#" onclick="showCategory('bonecas')">Bonecas</a>
-        <a href="#" onclick="showCategory('eletronicos')">Eletrônicos</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#bonecas">Bonecas</a>
+        <a href="#eletronicos">Eletrônicos</a>
     </nav>
 
     <div class="container">
-        <h2 id="todos">Todos os Produtos</h2>
-        <div class="category-section" id="todos-produtos">
-            <!-- Produtos de Todos -->
-            <div class="product">
-                <img src="imagens/imagem1.jpg" alt="Kit Jogo Alquimia">
-                <h3>Kit Jogo Alquimia</h3>
-                <p>Explore a ciência com 45 experiências fascinantes!</p>
-                <div class="price">R$ 157,99</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Kit%20Jogo%20Alquimia" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="imagens/imagem2.jpg" alt="Kit Truque de Mestre">
-                <h3>Kit Truque de Mestre</h3>
-                <p>Truques incríveis para você impressionar seus amigos e familiares!</p>
-                <div class="price">R$ 81,99</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Kit%20Truque%20de%20Mestre" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="imagens/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
-                <h3>Quebra-Cabeça 500 peças</h3>
-                <p>Monte cenários incríveis com este desafio!</p>
-                <div class="price">R$ 79,90</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Quebra-Cabeça%20500%20peças" target="_blank">Entrar em Contato</a>
-            </div>
-        </div>
-
         <h2 id="jogos">Jogos</h2>
-        <div class="category-section" id="jogos-produtos">
-            <!-- Produtos de Jogos -->
-            <div class="product">
-                <img src="imagens/imagem1.jpg" alt="Kit Jogo Alquimia">
-                <h3>Kit Jogo Alquimia</h3>
-                <p>Explore a ciência com 45 experiências fascinantes!</p>
-                <div class="price">R$ 157,99</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Kit%20Jogo%20Alquimia" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="imagens/imagem2.jpg" alt="Kit Truque de Mestre">
-                <h3>Kit Truque de Mestre</h3>
-                <p>Truques incríveis para você impressionar seus amigos e familiares!</p>
-                <div class="price">R$ 81,99</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Kit%20Truque%20de%20Mestre" target="_blank">Entrar em Contato</a>
-            </div>
+        <div class="product">
+            <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
+            <h3>Kit Jogo Alquimia</h3>
+            <p>Explore a ciência com 45 experiências fascinantes!</p>
+            <div class="price">R$ 157,99</div>
+            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+        </div>
+        <div class="product">
+            <img src="images/imagem2.jpg" alt="Jogo da Memória">
+            <h3>Jogo da Memória</h3>
+            <p>truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
+            <div class="price">R$ 81,99</div>
+            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+        </div>
+        <div class="product">
+            <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
+            <h3>Quebra-Cabeça 500 peças</h3>
+            <p>Monte cenários incríveis com este desafio!</p>
+            <div class="price">R$ 79,90</div>
+            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
 
         <h2 id="bonecas">Bonecas</h2>
-        <div class="category-section" id="bonecas-produtos">
-            <!-- Produtos de Bonecas -->
-            <div class="product">
-                <img src="imagens/boneca1.jpg" alt="Boneca Fashion Girl">
-                <h3>Boneca Fashion Girl</h3>
-                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                <div class="price">R$ 89,90</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20a%20Boneca%20Fashion%20Girl" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="imagens/boneca2.jpg" alt="Boneca Princesa">
-                <h3>Boneca Princesa</h3>
-                <p>Uma princesa para transformar brincadeiras em contos de fadas!</p>
-                <div class="price">R$ 109,90</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20a%20Boneca%20Princesa" target="_blank">Entrar em Contato</a>
-            </div>
+        <div class="product">
+            <img src="images/boneca.jpg" alt="Boneca Fashion Girl">
+            <h3>Boneca Fashion Girl</h3>
+            <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+            <div class="price">R$ 89,90</div>
+            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
 
         <h2 id="eletronicos">Eletrônicos</h2>
-        <div class="category-section" id="eletronicos-produtos">
-            <!-- Produtos de Eletrônicos -->
-            <div class="product">
-                <img src="imagens/fone.jpg" alt="Fone Bluetooth">
-                <h3>Fone Bluetooth</h3>
-                <p>Qualidade de som com total liberdade de movimento.</p>
-                <div class="price">R$ 159,90</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Fone%20Bluetooth" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="imagens/eletronico1.jpg" alt="Smartwatch">
-                <h3>Smartwatch</h3>
-                <p>Monitoramento de saúde e atividades com estilo.</p>
-                <div class="price">R$ 199,90</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Smartwatch" target="_blank">Entrar em Contato</a>
-            </div>
+        <div class="product">
+            <img src="images/fone.jpg" alt="Fone Bluetooth">
+            <h3>Fone Bluetooth</h3>
+            <p>Qualidade de som com total liberdade de movimento.</p>
+            <div class="price">R$ 159,90</div>
+            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
     </div>
-
-    <script>
-        function showCategory(category) {
-            // Ocultar todos os produtos
-            const allCategories = document.querySelectorAll('.category-section');
-            allCategories.forEach(categorySection => {
-                categorySection.style.display = 'none';
-            });
-
-            // Mostrar a categoria selecionada
-            const selectedCategory = document.getElementById(category + '-produtos');
-            if (selectedCategory) {
-                selectedCategory.style.display = 'flex';
-            }
-
-            // Alterar o título da categoria
-            const categoryTitle = document.getElementById(category);
-            if (categoryTitle) {
-                categoryTitle.scrollIntoView({behavior: 'smooth'});
-            }
-        }
-
-        // Mostrar todos os produtos por padrão
-        document.addEventListener("DOMContentLoaded", function() {
-            showCategory('todos');
-        });
-    </script>
 </body>
 </html>

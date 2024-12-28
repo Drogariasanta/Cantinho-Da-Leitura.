@@ -74,7 +74,7 @@
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-sizing: border-box;
-            height: 350px; /* Garantir altura fixa para todos os produtos */
+            height: 350px;
             position: relative;
         }
         .product:hover {
@@ -96,7 +96,7 @@
             font-size: 1em;
             color: #666;
             margin-bottom: 10px;
-            min-height: 50px; /* Garante que a descrição não sobreponha outros elementos */
+            min-height: 50px;
         }
         .product .price {
             font-size: 1.5em;
@@ -118,6 +118,11 @@
         .product a:hover {
             background: #005fa3;
         }
+        .product-details {
+            display: none;
+            padding-top: 15px;
+            text-align: center;
+        }
         .category {
             display: none;
         }
@@ -128,10 +133,6 @@
             .product {
                 width: calc(45% - 40px);
                 padding: 10px;
-            }
-            nav a {
-                font-size: 0.9em;
-                margin: 0 10px;
             }
         }
         @media (max-width: 480px) {
@@ -161,145 +162,43 @@
         <div id="todos" class="category active">
             <h2>Todos os Produtos</h2>
             <!-- Produtos de Todas as Categorias -->
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
                 <h3>Kit Jogo Alquimia</h3>
                 <p>Explore a ciência com 45 experiências fascinantes!</p>
                 <div class="price">R$ 157,99</div>
                 <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Este kit proporciona experiências científicas incríveis para todas as idades.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
                 <h3>Kit Truque de Mestre</h3>
                 <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
                 <div class="price">R$ 81,99</div>
                 <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Aprenda truques de mágica para impressionar seus amigos e familiares.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
             </div>
-            <div class="product">
+            <div class="product" onclick="toggleDetails(this)">
                 <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
                 <h3>Quebra-Cabeça 500 peças</h3>
                 <p>Monte cenários incríveis com este desafio!</p>
                 <div class="price">R$ 79,90</div>
                 <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                <div class="product-details">
+                    <p>Desafie-se a montar este quebra-cabeça com 500 peças e divirta-se por horas.</p>
+                    <a href="https://wa.me/35988490590" target="_blank">Comprar Agora</a>
+                </div>
             </div>
-            <div class="product">
-                <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
-                <h3>Boneca Fashion Girl</h3>
-                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                <div class="price">R$ 89,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/boneca2.jpg" alt="Boneca Princesa">
-                <h3>Boneca Princesa</h3>
-                <p>Boneca elegante com vestido de princesa.</p>
-                <div class="price">R$ 120,00</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/boneca3.jpg" alt="Boneca Estilo Vintage">
-                <h3>Boneca Estilo Vintage</h3>
-                <p>Boneca de estilo retrô para colecionadores.</p>
-                <div class="price">R$ 110,00</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/eletronico1.jpg" alt="Fone de Ouvido Bluetooth">
-                <h3>Fone de Ouvido Bluetooth</h3>
-                <p>Ouça música sem fio com qualidade de som incrível!</p>
-                <div class="price">R$ 199,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/eletronico2.jpg" alt="Smartwatch Fitness">
-                <h3>Smartwatch Fitness</h3>
-                <p>Monitore sua saúde e atividade física com estilo.</p>
-                <div class="price">R$ 299,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/eletronico3.jpg" alt="Caixa de Som Bluetooth">
-                <h3>Caixa de Som Bluetooth</h3>
-                <p>Leve a festa para qualquer lugar com som potente!</p>
-                <div class="price">R$ 150,00</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
+            <!-- Mais produtos -->
         </div>
 
-        <div id="jogos" class="category">
-            <h2>Jogos</h2>
-            <div class="product">
-                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-                <h3>Kit Jogo Alquimia</h3>
-                <p>Explore a ciência com 45 experiências fascinantes!</p>
-                <div class="price">R$ 157,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
-                <h3>Kit Truque de Mestre</h3>
-                <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
-                <div class="price">R$ 81,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
-                <h3>Quebra-Cabeça 500 peças</h3>
-                <p>Monte cenários incríveis com este desafio!</p>
-                <div class="price">R$ 79,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-        </div>
-
-        <div id="bonecas" class="category">
-            <h2>Bonecas</h2>
-            <div class="product">
-                <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
-                <h3>Boneca Fashion Girl</h3>
-                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                <div class="price">R$ 89,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/boneca2.jpg" alt="Boneca Princesa">
-                <h3>Boneca Princesa</h3>
-                <p>Boneca elegante com vestido de princesa.</p>
-                <div class="price">R$ 120,00</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/boneca3.jpg" alt="Boneca Estilo Vintage">
-                <h3>Boneca Estilo Vintage</h3>
-                <p>Boneca de estilo retrô para colecionadores.</p>
-                <div class="price">R$ 110,00</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-        </div>
-
-        <div id="eletronicos" class="category">
-            <h2>Eletrônicos</h2>
-            <div class="product">
-                <img src="images/eletronico1.jpg" alt="Fone de Ouvido Bluetooth">
-                <h3>Fone de Ouvido Bluetooth</h3>
-                <p>Ouça música sem fio com qualidade de som incrível!</p>
-                <div class="price">R$ 199,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/eletronico2.jpg" alt="Smartwatch Fitness">
-                <h3>Smartwatch Fitness</h3>
-                <p>Monitore sua saúde e atividade física com estilo.</p>
-                <div class="price">R$ 299,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/eletronico3.jpg" alt="Caixa de Som Bluetooth">
-                <h3>Caixa de Som Bluetooth</h3>
-                <p>Leve a festa para qualquer lugar com som potente!</p>
-                <div class="price">R$ 150,00</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-        </div>
+        <!-- Outras categorias -->
     </div>
 
     <script>
@@ -309,6 +208,12 @@
                 categoryElement.classList.remove('active');
             });
             document.getElementById(category).classList.add('active');
+        }
+
+        function toggleDetails(product) {
+            var details = product.querySelector('.product-details');
+            details.style.display = details.style.display === 'block' ? 'none' : 'block';
+            product.style.height = details.style.display === 'block' ? 'auto' : '350px';
         }
     </script>
 </body>

@@ -157,7 +157,7 @@
                 margin: 0 10px;
             }
             .category-arrow {
-                display: none; /* Esconde as setas em telas menores */
+                display: block; /* As setas agora aparecem no celular */
             }
         }
         @media (max-width: 480px) {
@@ -229,25 +229,29 @@
                     <div class="price">R$ 81,99</div>
                     <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
                 </div>
+                <div class="product">
+                    <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
+                    <h3>Quebra-Cabeça 500 peças</h3>
+                    <p>Monte cenários incríveis com este desafio!</p>
+                    <div class="price">R$ 79,90</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
             </div>
-            <!-- Outros produtos seguem aqui -->
-        </div>
-    </div>
 
-    <script>
-        function showCategory(category) {
-            const categories = document.querySelectorAll('.category');
-            categories.forEach(function(categoryElement) {
-                categoryElement.classList.remove('active');
-            });
-            document.getElementById(category).classList.add('active');
-        }
-
-        function scrollCategories(direction) {
-            const container = document.querySelector('.category-container');
-            const scrollAmount = direction === 'left' ? -200 : 200;
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    </script>
-</body>
-</html>
+            <div id="bonecas" class="category">
+                <h2>Bonecas</h2>
+                <div class="product">
+                    <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
+                    <h3>Boneca Fashion Girl</h3>
+                    <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+                    <div class="price">R$ 89,90</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
+                <div class="product">
+                    <img src="images/boneca2.jpg" alt="Boneca Fashion Girl">
+                    <h3>Boneca Fashion Girl</h3>
+                    <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+                    <div class="price">R$ 89,90</div>
+                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+                </div>
+                <div

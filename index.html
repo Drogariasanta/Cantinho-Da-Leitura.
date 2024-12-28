@@ -48,27 +48,6 @@
         nav a:hover {
             background: #005fa3;
         }
-        .category-container {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        .category-arrow {
-            position: absolute;
-            top: 50%;
-            z-index: 10;
-            background: #0077cc;
-            color: white;
-            font-size: 20px;
-            padding: 10px;
-            cursor: pointer;
-        }
-        .category-arrow-left {
-            left: 10px;
-        }
-        .category-arrow-right {
-            right: 10px;
-        }
         .container {
             padding: 40px 15px;
             width: 100%;
@@ -147,17 +126,9 @@
                 width: calc(45% - 40px);
                 padding: 10px;
             }
-            .category-container {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                margin-bottom: 20px;
-            }
             nav a {
                 font-size: 0.9em;
                 margin: 0 10px;
-            }
-            .category-arrow {
-                display: block; /* As setas agora aparecem no celular */
             }
         }
         @media (max-width: 480px) {
@@ -183,75 +154,116 @@
         <a href="javascript:void(0);" onclick="showCategory('eletronicos')">Eletrônicos</a>
     </nav>
 
-    <div class="category-container">
-        <div class="category-arrow category-arrow-left" onclick="scrollCategories('left')">←</div>
-        <div class="category-arrow category-arrow-right" onclick="scrollCategories('right')">→</div>
-
-        <div class="container">
-            <div id="todos" class="category active">
-                <h2>Todos os Produtos</h2>
-                <div class="product">
-                    <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-                    <h3>Kit Jogo Alquimia</h3>
-                    <p>Explore a ciência com 45 experiências fascinantes!</p>
-                    <div class="price">R$ 157,99</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
-                <div class="product">
-                    <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
-                    <h3>Kit Truque de Mestre</h3>
-                    <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
-                    <div class="price">R$ 81,99</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
-                <div class="product">
-                    <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
-                    <h3>Quebra-Cabeça 500 peças</h3>
-                    <p>Monte cenários incríveis com este desafio!</p>
-                    <div class="price">R$ 79,90</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
+    <div class="container">
+        <div id="todos" class="category active">
+            <h2>Todos os Produtos</h2>
+            <div class="product">
+                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
+                <h3>Kit Jogo Alquimia</h3>
+                <p>Explore a ciência com 45 experiências fascinantes!</p>
+                <div class="price">R$ 157,99</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
             </div>
-
-            <div id="jogos" class="category">
-                <h2>Jogos</h2>
-                <div class="product">
-                    <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-                    <h3>Kit Jogo Alquimia</h3>
-                    <p>Explore a ciência com 45 experiências fascinantes!</p>
-                    <div class="price">R$ 157,99</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
-                <div class="product">
-                    <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
-                    <h3>Kit Truque de Mestre</h3>
-                    <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
-                    <div class="price">R$ 81,99</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
-                <div class="product">
-                    <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
-                    <h3>Quebra-Cabeça 500 peças</h3>
-                    <p>Monte cenários incríveis com este desafio!</p>
-                    <div class="price">R$ 79,90</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
+            <div class="product">
+                <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
+                <h3>Kit Truque de Mestre</h3>
+                <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
+                <div class="price">R$ 81,99</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
             </div>
+            <div class="product">
+                <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
+                <h3>Quebra-Cabeça 500 peças</h3>
+                <p>Monte cenários incríveis com este desafio!</p>
+                <div class="price">R$ 79,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+        </div>
 
-            <div id="bonecas" class="category">
-                <h2>Bonecas</h2>
-                <div class="product">
-                    <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
-                    <h3>Boneca Fashion Girl</h3>
-                    <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                    <div class="price">R$ 89,90</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
-                <div class="product">
-                    <img src="images/boneca2.jpg" alt="Boneca Fashion Girl">
-                    <h3>Boneca Fashion Girl</h3>
-                    <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                    <div class="price">R$ 89,90</div>
-                    <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-                </div>
-                <div
+        <div id="jogos" class="category">
+            <h2>Jogos</h2>
+            <div class="product">
+                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
+                <h3>Kit Jogo Alquimia</h3>
+                <p>Explore a ciência com 45 experiências fascinantes!</p>
+                <div class="price">R$ 157,99</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/imagem2.jpg" alt="Kit Truque de Mestre">
+                <h3>Kit Truque de Mestre</h3>
+                <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
+                <div class="price">R$ 81,99</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
+                <h3>Quebra-Cabeça 500 peças</h3>
+                <p>Monte cenários incríveis com este desafio!</p>
+                <div class="price">R$ 79,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+        </div>
+
+        <div id="bonecas" class="category">
+            <h2>Bonecas</h2>
+            <div class="product">
+                <img src="images/boneca1.jpg" alt="Boneca Fashion Girl">
+                <h3>Boneca Fashion Girl</h3>
+                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+                <div class="price">R$ 89,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/boneca2.jpg" alt="Boneca Fashion Girl">
+                <h3>Boneca Fashion Girl</h3>
+                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+                <div class="price">R$ 89,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/boneca3.jpg" alt="Boneca Fashion Girl">
+                <h3>Boneca Fashion Girl</h3>
+                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
+                <div class="price">R$ 89,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+        </div>
+
+        <div id="eletronicos" class="category">
+            <h2>Eletrônicos</h2>
+            <div class="product">
+                <img src="images/eletronico1.jpg" alt="Fone de Ouvido Bluetooth">
+                <h3>Fone de Ouvido Bluetooth</h3>
+                <p>Ouça música sem fio com qualidade de som incrível!</p>
+                <div class="price">R$ 199,99</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/eletronico2.jpg" alt="Smartwatch Fitness">
+                <h3>Smartwatch Fitness</h3>
+                <p>Monitore sua saúde e atividade física com estilo.</p>
+                <div class="price">R$ 299,90</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="images/eletronico3.jpg" alt="Caixa de Som Bluetooth">
+                <h3>Caixa de Som Bluetooth</h3>
+                <p>Leve a festa para qualquer lugar com som potente!</p>
+                <div class="price">R$ 150,00</div>
+                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            var categories = document.querySelectorAll('.category');
+            categories.forEach(function(categoryElement) {
+                categoryElement.classList.remove('active');
+            });
+            document.getElementById(category).classList.add('active');
+        }
+    </script>
+</body>
+</html>

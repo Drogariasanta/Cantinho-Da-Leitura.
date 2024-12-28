@@ -129,46 +129,30 @@
             }
         }
     </style>
-    <script>
-        function showCategory(category) {
-            const allProducts = document.querySelectorAll('.product');
-            
-            // Esconde todos os produtos
-            allProducts.forEach(product => product.style.display = 'none');
-
-            // Exibe produtos da categoria escolhida ou todos os produtos
-            if (category === 'todos') {
-                allProducts.forEach(product => product.style.display = 'inline-block');
-            } else {
-                const selectedCategoryProducts = document.querySelectorAll(`.${category}`);
-                selectedCategoryProducts.forEach(product => product.style.display = 'inline-block');
-            }
-        }
-    </script>
 </head>
 <body>
     <header>
         Drogaria Santa Maria Pinheirinho
     </header>
     <nav>
-        <a href="#" onclick="showCategory('todos')">Todos Produtos</a>
-        <a href="#" onclick="showCategory('jogos')">Jogos</a>
-        <a href="#" onclick="showCategory('bonecas')">Bonecas</a>
-        <a href="#" onclick="showCategory('eletronicos')">Eletrônicos</a>
+        <a href="#todos">Todos Produtos</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#bonecas">Bonecas</a>
+        <a href="#eletronicos">Eletrônicos</a>
     </nav>
 
-    <div class="container">
-        <h2 id="todos">Todos Produtos</h2>
-
-        <!-- Produtos com categorias -->
-        <div class="product jogos bonecas eletronicos">
+    <div class="container" id="todos">
+        <h2>Todos Produtos</h2>
+        
+        <!-- Produtos de Jogos -->
+        <div class="product jogos">
             <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
             <h3>Kit Jogo Alquimia</h3>
             <p>Explore a ciência com 45 experiências fascinantes!</p>
             <div class="price">R$ 157,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-        <div class="product jogos bonecas eletronicos">
+        <div class="product jogos">
             <img src="images/agoravai.jpg" alt="Banco Imobiliário Jr">
             <h3>Banco Imobiliário Jr</h3>
             <p>Banco Imobiliário Jr é a diversão de investir e negociar de forma rápida e divertida, onde crianças podem se tornar grandes investidores!</p>
@@ -176,12 +160,14 @@
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
         <div class="product jogos">
-            <img src="images/imagem2.jpg" alt="Jogo da Memória">
-            <h3>Kit truque de mestre</h3>
-            <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
-            <div class="price">R$ 81,99</div>
+            <img src="images/kittruque.jpg" alt="Kit Truque de Mestre">
+            <h3>Kit Truque de Mestre</h3>
+            <p>Com o Kit Truque de Mestre, você pode aprender e realizar truques incríveis de mágica com cartas e outros objetos!</p>
+            <div class="price">R$ 79,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
+
+        <!-- Produtos de Bonecas -->
         <div class="product bonecas">
             <img src="images/boneca.jpg" alt="Boneca Fofitinha Baby 100% Vinil">
             <h3>Boneca Fofitinha Baby 100% Vinil</h3>
@@ -203,6 +189,8 @@
             <div class="price">R$ 49,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
+
+        <!-- Produtos de Eletrônicos -->
         <div class="product eletronicos">
             <img src="images/fone.jpg" alt="Fone Bluetooth 5.1">
             <h3>Fone Bluetooth 5.1</h3>

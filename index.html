@@ -12,6 +12,7 @@
             background: #f7f7f7;
             color: #333;
             box-sizing: border-box;
+            overflow-x: hidden; /* Impede o zoom horizontal */
         }
         header {
             background: #005fa3;
@@ -26,11 +27,12 @@
         }
         nav {
             display: flex;
-            justify-content: center;
+            overflow-x: auto;  /* Habilita o deslizamento horizontal */
             background: #0077cc;
             padding: 15px 0;
             width: 100%;
             box-sizing: border-box;
+            white-space: nowrap; /* Impede quebra de linha entre os itens */
         }
         nav a {
             color: white;
@@ -39,6 +41,7 @@
             padding: 10px 20px;
             border-radius: 5px;
             transition: background 0.3s ease;
+            white-space: nowrap; /* Impede quebra de linha no link */
         }
         nav a:hover {
             background: #005fa3;
@@ -150,88 +153,22 @@
     <div class="container">
         <div id="todos" class="category">
             <h2>Todos os Produtos</h2>
-            <div class="product">
-                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-                <h3>Kit Jogo Alquimia</h3>
-                <p>Explore a ciência com 45 experiências fascinantes!</p>
-                <div class="price">R$ 157,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/imagem2.jpg" alt="Jogo da Memória">
-                <h3>Jogo da Memória</h3>
-                <p>truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
-                <div class="price">R$ 81,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
-                <h3>Quebra-Cabeça 500 peças</h3>
-                <p>Monte cenários incríveis com este desafio!</p>
-                <div class="price">R$ 79,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/boneca.jpg" alt="Boneca Fashion Girl">
-                <h3>Boneca Fashion Girl</h3>
-                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                <div class="price">R$ 89,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/fone.jpg" alt="Fone Bluetooth">
-                <h3>Fone Bluetooth</h3>
-                <p>Qualidade de som com total liberdade de movimento.</p>
-                <div class="price">R$ 159,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
+            <!-- Produtos aqui -->
         </div>
 
         <div id="jogos" class="category">
             <h2>Jogos</h2>
-            <div class="product">
-                <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-                <h3>Kit Jogo Alquimia</h3>
-                <p>Explore a ciência com 45 experiências fascinantes!</p>
-                <div class="price">R$ 157,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/imagem2.jpg" alt="Jogo da Memória">
-                <h3>Jogo da Memória</h3>
-                <p>truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
-                <div class="price">R$ 81,99</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="images/puzzle.jpg" alt="Quebra-Cabeça 500 peças">
-                <h3>Quebra-Cabeça 500 peças</h3>
-                <p>Monte cenários incríveis com este desafio!</p>
-                <div class="price">R$ 79,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
+            <!-- Produtos de jogos aqui -->
         </div>
 
         <div id="bonecas" class="category">
             <h2>Bonecas</h2>
-            <div class="product">
-                <img src="images/boneca.jpg" alt="Boneca Fashion Girl">
-                <h3>Boneca Fashion Girl</h3>
-                <p>Boneca estilosa para brincadeiras inesquecíveis.</p>
-                <div class="price">R$ 89,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
+            <!-- Produtos de bonecas aqui -->
         </div>
 
         <div id="eletronicos" class="category">
             <h2>Eletrônicos</h2>
-            <div class="product">
-                <img src="images/fone.jpg" alt="Fone Bluetooth">
-                <h3>Fone Bluetooth</h3>
-                <p>Qualidade de som com total liberdade de movimento.</p>
-                <div class="price">R$ 159,90</div>
-                <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-            </div>
+            <!-- Produtos de eletrônicos aqui -->
         </div>
     </div>
 

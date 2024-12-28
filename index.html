@@ -129,6 +129,22 @@
             }
         }
     </style>
+    <script>
+        function showCategory(category) {
+            const allProducts = document.querySelectorAll('.product');
+            
+            // Esconde todos os produtos
+            allProducts.forEach(product => product.style.display = 'none');
+
+            // Exibe produtos da categoria escolhida ou todos os produtos
+            if (category === 'todos') {
+                allProducts.forEach(product => product.style.display = 'inline-block');
+            } else {
+                const selectedCategoryProducts = document.querySelectorAll(`.${category}`);
+                selectedCategoryProducts.forEach(product => product.style.display = 'inline-block');
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -143,18 +159,13 @@
 
     <div class="container">
         <h2 id="todos">Todos Produtos</h2>
+
+        <!-- Produtos com categorias -->
         <div class="product jogos bonecas eletronicos">
             <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
             <h3>Kit Jogo Alquimia</h3>
             <p>Explore a ciência com 45 experiências fascinantes!</p>
             <div class="price">R$ 157,99</div>
-            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-        </div>
-        <div class="product jogos bonecas eletronicos">
-            <img src="images/imagem2.jpg" alt="Jogo da Memória">
-            <h3>Jogo da Memória</h3>
-            <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
-            <div class="price">R$ 81,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
         <div class="product jogos bonecas eletronicos">
@@ -164,24 +175,13 @@
             <div class="price">R$ 169,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <h2 id="jogos">Jogos</h2>
-        <div class="product jogos">
-            <img src="images/imagem1.jpg" alt="Kit Jogo Alquimia">
-            <h3>Kit Jogo Alquimia</h3>
-            <p>Explore a ciência com 45 experiências fascinantes!</p>
-            <div class="price">R$ 157,99</div>
-            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
-        </div>
         <div class="product jogos">
             <img src="images/imagem2.jpg" alt="Jogo da Memória">
-            <h3>Jogo da Memória</h3>
+            <h3>Kit truque de mestre</h3>
             <p>Truques incríveis para você impressionar seus amigos e familiares. Aprenda os segredos da mágica e se torne um verdadeiro mestre dos truques!</p>
             <div class="price">R$ 81,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <h2 id="bonecas">Bonecas</h2>
         <div class="product bonecas">
             <img src="images/boneca.jpg" alt="Boneca Fofitinha Baby 100% Vinil">
             <h3>Boneca Fofitinha Baby 100% Vinil</h3>
@@ -196,8 +196,13 @@
             <div class="price">R$ 74,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
-        <h2 id="eletronicos">Eletrônicos</h2>
+        <div class="product bonecas">
+            <img src="images/boneca3.jpg" alt="Boneca Baby Milk Shake M734">
+            <h3>Boneca Baby Milk Shake M734</h3>
+            <p>A Boneca Baby Milk Shake M734 é charmosa e perfeita para as brincadeiras das meninas, trazendo diversão e fofura em cada momento.</p>
+            <div class="price">R$ 49,99</div>
+            <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
+        </div>
         <div class="product eletronicos">
             <img src="images/fone.jpg" alt="Fone Bluetooth 5.1">
             <h3>Fone Bluetooth 5.1</h3>
@@ -212,7 +217,6 @@
             <div class="price">R$ 49,99</div>
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
-
         <div class="product eletronicos">
             <img src="images/controle.jpg" alt="Controle Joystick Ipega 9021s">
             <h3>Controle Joystick Ipega 9021s</h3>
@@ -221,21 +225,5 @@
             <a href="https://wa.me/35988490590" target="_blank">Entrar em Contato</a>
         </div>
     </div>
-
-    <script>
-        function showCategory(category) {
-            const products = document.querySelectorAll('.product');
-            products.forEach(product => {
-                if (category === 'todos') {
-                    product.style.display = 'inline-block';
-                } else {
-                    product.style.display = product.classList.contains(category) ? 'inline-block' : 'none';
-                }
-            });
-        }
-
-        // Show all products by default
-        showCategory('todos');
-    </script>
 </body>
 </html>

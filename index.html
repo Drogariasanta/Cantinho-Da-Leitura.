@@ -159,10 +159,10 @@
     </header>
 
     <nav>
-        <a href="#todos">Todos</a>
-        <a href="#jogos">Jogos</a>
-        <a href="#bonecas">Bonecas</a>
-        <a href="#eletronicos">Eletrônicos</a>
+        <a href="#" onclick="showCategory('todos')">Todos</a>
+        <a href="#" onclick="showCategory('jogos')">Jogos</a>
+        <a href="#" onclick="showCategory('bonecas')">Bonecas</a>
+        <a href="#" onclick="showCategory('eletronicos')">Eletrônicos</a>
     </nav>
 
     <div class="container">
@@ -192,6 +192,25 @@
             </div>
         </div>
 
+        <h2 id="jogos">Jogos</h2>
+        <div class="category-section" id="jogos-produtos">
+            <!-- Produtos de Jogos -->
+            <div class="product">
+                <img src="imagens/imagem1.jpg" alt="Kit Jogo Alquimia">
+                <h3>Kit Jogo Alquimia</h3>
+                <p>Explore a ciência com 45 experiências fascinantes!</p>
+                <div class="price">R$ 157,99</div>
+                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Kit%20Jogo%20Alquimia" target="_blank">Entrar em Contato</a>
+            </div>
+            <div class="product">
+                <img src="imagens/imagem2.jpg" alt="Kit Truque de Mestre">
+                <h3>Kit Truque de Mestre</h3>
+                <p>Truques incríveis para você impressionar seus amigos e familiares!</p>
+                <div class="price">R$ 81,99</div>
+                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Kit%20Truque%20de%20Mestre" target="_blank">Entrar em Contato</a>
+            </div>
+        </div>
+
         <h2 id="bonecas">Bonecas</h2>
         <div class="category-section" id="bonecas-produtos">
             <!-- Produtos de Bonecas -->
@@ -208,13 +227,6 @@
                 <p>Uma princesa para transformar brincadeiras em contos de fadas!</p>
                 <div class="price">R$ 109,90</div>
                 <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20a%20Boneca%20Princesa" target="_blank">Entrar em Contato</a>
-            </div>
-            <div class="product">
-                <img src="imagens/boneca3.jpg" alt="Boneca Aventureira">
-                <h3>Boneca Aventureira</h3>
-                <p>Explore o mundo com a boneca aventureira!</p>
-                <div class="price">R$ 79,90</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20a%20Boneca%20Aventureira" target="_blank">Entrar em Contato</a>
             </div>
         </div>
 
@@ -235,14 +247,34 @@
                 <div class="price">R$ 199,90</div>
                 <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Smartwatch" target="_blank">Entrar em Contato</a>
             </div>
-            <div class="product">
-                <img src="imagens/eletronico2.jpg" alt="Fone de Ouvido">
-                <h3>Fone de Ouvido</h3>
-                <p>Imersão total no som com este fone de alta qualidade.</p>
-                <div class="price">R$ 129,90</div>
-                <a href="https://wa.me/35988490590?text=Gostaria%20de%20comprar%20o%20Fone%20de%20Ouvido" target="_blank">Entrar em Contato</a>
-            </div>
         </div>
     </div>
+
+    <script>
+        function showCategory(category) {
+            // Ocultar todos os produtos
+            const allCategories = document.querySelectorAll('.category-section');
+            allCategories.forEach(categorySection => {
+                categorySection.style.display = 'none';
+            });
+
+            // Mostrar a categoria selecionada
+            const selectedCategory = document.getElementById(category + '-produtos');
+            if (selectedCategory) {
+                selectedCategory.style.display = 'flex';
+            }
+
+            // Alterar o título da categoria
+            const categoryTitle = document.getElementById(category);
+            if (categoryTitle) {
+                categoryTitle.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+
+        // Mostrar todos os produtos por padrão
+        document.addEventListener("DOMContentLoaded", function() {
+            showCategory('todos');
+        });
+    </script>
 </body>
 </html>

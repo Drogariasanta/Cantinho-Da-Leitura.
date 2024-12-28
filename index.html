@@ -5,75 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Produtos</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #6200ea;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            width: 90%;
-            margin: auto;
-            padding: 20px;
-        }
-        .product {
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f9; }
+        .container { width: 90%; margin: auto; padding: 20px; }
+        .product { 
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #fff;
-            margin: 10px 0;
+            margin-bottom: 20px;
+            background: #fff;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .product img {
-            max-width: 100px;
+        .product img { 
+            max-width: 150px;
+            height: auto;
             border-radius: 8px;
         }
         .product-info {
             flex: 1;
-            margin-left: 15px;
+            margin-left: 20px;
         }
-        .product-info h3 {
-            margin: 0 0 5px;
+        h1 { text-align: center; }
+        a {
+            text-decoration: none;
+            color: white;
+            background-color: #25d366;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
         }
-        .product-info p {
-            margin: 0;
-            color: #555;
+        a:hover {
+            background-color: #1da851;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Catálogo de Produtos</h1>
-    </header>
     <div class="container">
+        <h1>Catálogo de Produtos</h1>
+
         <!-- Produto 1 -->
         <div class="product">
-            <img src="produto1.jpg" alt="Produto 1">
+            <img src="images/produto1.jpg" alt="Produto 1">
             <div class="product-info">
-                <h3>Produto 1</h3>
-                <p>Descrição do produto.</p>
-                <p><strong>R$ 157,99</strong></p>
+                <h2>Produto 1</h2>
+                <p>Descrição do produto 1.</p>
+                <p><strong>R$ 100,00</strong></p>
+                <a href="https://wa.me/35988490590?text=Olá,%20tenho%20interesse%20no%20Produto%201" target="_blank">Entrar em Contato</a>
             </div>
         </div>
 
         <!-- Produto 2 -->
         <div class="product">
-            <img src="produto2.jpg" alt="Produto 2">
+            <img src="images/produto2.jpg" alt="Produto 2">
             <div class="product-info">
-                <h3>Produto 2</h3>
-                <p>Descrição do produto.</p>
-                <p><strong>R$ 81,99</strong></p>
+                <h2>Produto 2</h2>
+                <p>Descrição do produto 2.</p>
+                <p><strong>R$ 200,00</strong></p>
+                <a href="https://wa.me/35988490590?text=Olá,%20tenho%20interesse%20no%20Produto%202" target="_blank">Entrar em Contato</a>
             </div>
         </div>
     </div>
 </body>
 </html>
-
-
-<img src="images/produto1.jpg" alt="Produto 1">

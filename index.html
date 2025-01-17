@@ -14,15 +14,12 @@
         }
         header {
             background-color: #f7f7f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
             position: relative;
-            height: 200px;
         }
         header img {
-            max-height: 180px;
+            width: 100%;
+            height: auto;
             object-fit: contain;
         }
         nav {
@@ -70,6 +67,10 @@
             object-fit: contain;
             border-radius: 10px;
             margin-bottom: 10px;
+        }
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .product h3 {
             font-size: 1.1em;
@@ -211,11 +212,13 @@
                 alert("Seu carrinho está vazio.");
                 return;
             }
-            const address = prompt("Informe o endereço de entrega:");
-            if (!address) return alert("Endereço não informado. Operação cancelada.");
+            const customerName = prompt("Informe seu nome:");
+            if (!customerName) return alert("Nome não informado. Operação cancelada.");
             const paymentMethod = prompt("Qual a forma de pagamento?");
             if (!paymentMethod) return alert("Forma de pagamento não informada. Operação cancelada.");
-            let total = 0, message = `Itens no carrinho:\n`;
+            const address = prompt("Informe o endereço de entrega:");
+            if (!address) return alert("Endereço não informado. Operação cancelada.");
+            let total = 0, message = `Nome: ${customerName}\nItens no carrinho:\n`;
             cart.forEach(item => { 
                 message += `- ${item.name}: ${item.price}\n`; 
                 total += parseFloat(item.price.replace("R$", "").replace(",", "."));

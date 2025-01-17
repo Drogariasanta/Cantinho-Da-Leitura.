@@ -24,8 +24,8 @@
             height: 250px;
         }
         header img {
-            width: 500%;
-            object-fit: contain;
+            width: 100%;
+            object-fit: cover;
             height: 280px;
         }
         header h1 {
@@ -105,6 +105,7 @@
         }
         .button-group {
             margin-top: 15px;
+            display: block; /* Botões sempre visíveis */
         }
         .button-group .btn {
             background-color: #2e7d32;
@@ -284,11 +285,11 @@
 
                 cartContent += `\nTotal: R$ ${total.toFixed(2)}`;
 
-                const address = prompt("Informe seu endereço:");
                 const name = prompt("Informe seu nome:");
                 const paymentMethod = prompt("Informe sua forma de pagamento:");
+                const address = prompt("Informe seu endereço:");
 
-                cartContent += `\n\nCliente: ${name}\nEndereço: ${address}\nForma de pagamento: ${paymentMethod}`;
+                cartContent += `\n\nCliente: ${name}\nForma de pagamento: ${paymentMethod}\nEndereço: ${address}`;
 
                 const cartLink = `https://wa.me/553534703859?text=${encodeURIComponent(cartContent)}`;
                 window.open(cartLink, "_blank");

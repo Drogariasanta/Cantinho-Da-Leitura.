@@ -14,23 +14,23 @@
             padding: 0;
         }
         header {
-            background-color: #f7f7f7;
+            background-color: #f7f7f7; /* Cor do fundo alterada */
             padding: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Centraliza o conteúdo */
             text-align: center;
             position: relative;
-            height: 250px;
+            height: 250px; /* Altura do cabeçalho aumentada */
         }
         header img {
-            width: 100%;
-            object-fit: cover;
-            height: 280px;
+            width: 500%; /* Aumenta ainda mais a imagem do cabeçalho */
+            object-fit: contain;
+            height: 280px; /* Ajuste para imagem maior */
         }
         header h1 {
             font-size: 2em;
-            color: #43a047;
+            color: #43a047; /* Cor verde */
             margin: 0;
             position: absolute;
             text-align: center;
@@ -69,7 +69,7 @@
             text-align: center;
             flex: 1 1 calc(33.33% - 40px);
             box-sizing: border-box;
-            min-height: 400px;
+            min-height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -104,7 +104,6 @@
         }
         .button-group {
             margin-top: 15px;
-            display: block;
         }
         .button-group .btn {
             background-color: #2e7d32;
@@ -154,17 +153,16 @@
         /* Responsividade */
         @media (max-width: 768px) {
             header {
-                height: 200px;
+                height: 200px; /* Diminuir altura do cabeçalho no celular */
             }
             .product {
                 flex: 1 1 calc(50% - 40px);
-                height: 400px;
             }
         }
 
         @media (max-width: 480px) {
             header {
-                height: 150px;
+                height: 150px; /* Ajuste adicional para celulares menores */
             }
             nav select {
                 font-size: 0.9em;
@@ -175,7 +173,6 @@
             }
             .product {
                 flex: 1 1 calc(100% - 40px);
-                height: 400px;
             }
         }
     </style>
@@ -231,15 +228,11 @@
         function populateCategories(products) {
             const categoryFilter = document.getElementById("categoryFilter");
             const uniqueCategories = new Set(products.map(p => p["Categoria"]));
+            const sortedCategories = ["todos", ...Array.from(uniqueCategories).sort()];
 
-            const sortedCategories = Array.from(uniqueCategories).sort();
-            categoryFilter.innerHTML = `<option value="todos">Todos</option>`;
-
-            sortedCategories.forEach(category => {
-                if (category) {
-                    categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
-                }
-            });
+            categoryFilter.innerHTML = sortedCategories.map(category => 
+                `<option value="${category}">${category}</option>`
+            ).join("");
         }
 
         function populateProducts(products) {
@@ -249,66 +242,57 @@
             products.forEach(product => {
                 if (product["Nome do Produto"] && product["Categoria"]) {
                     const categoryClass = product["Categoria"].toLowerCase().replace(/\s+/g, '-');
-                    const productElement = `
-                        <div class="product ${categoryClass}">
+                    const productElement = 
+                        `<div class="product ${categoryClass}">
                             <img src="${product["Imagem"]}" alt="${product["Nome do Produto"]}">
                             <h3>${product["Nome do Produto"]}</h3>
                             <p>${product["Descrição do Produto"]}</p>
                             <div class="price">${product["Preço"]}</div>
                             <div class="button-group">
                                 <button class="btn" onclick="addToCart('${product["Nome do Produto"]}', '${product["Preço"]}')">Adicionar ao Carrinho</button>
-                                <a href="https://wa.me/553534703859?text=${encodeURIComponent('Quero saber mais sobre ' + product["Nome do Produto"])}" class="btn contact" target="_blank">Entrar em Contato</a>
+                                <a href="https://wa.me/553534703859?text=Quero%20comprar%20${product["Nome do Produto"]}" class="btn contact">Contatar no WhatsApp</a>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                     productContainer.innerHTML += productElement;
                 }
             });
         }
 
+        function filterByCategory() {
+            const category = document.getElementById("categoryFilter").value;
+            const categoryTitle = document.getElementById("categoryTitle");
+
+            fetchData().then(products => {
+                let filteredProducts = products;
+
+                if (category && category !== "todos") {
+                    filteredProducts = products.filter(product => 
+                        product["Categoria"].toLowerCase() === category.toLowerCase()
+                    );
+                    categoryTitle.textContent = `Produtos da Categoria: ${category}`;
+                } else {
+                    categoryTitle.textContent = "Todos os Produtos";
+                }
+
+                populateProducts(filteredProducts);
+            });
+        }
+
         function addToCart(name, price) {
             cart.push({ name, price });
-            alert(`${name} foi adicionado ao carrinho!`);
+            alert(`${name} foi adicionado ao carrinho.`);
         }
 
         function viewCart() {
-            if (cart.length === 0) {
-                alert("Seu carrinho está vazio.");
-            } else {
-                let cartContent = "Itens no carrinho:\n";
-                let total = 0;
-                cart.forEach(item => {
-                    cartContent += `- ${item.name} - ${item.price}\n`;
-                    total += parseFloat(item.price.replace("R$", "").replace(",", "."));
-                });
-
-                cartContent += `\nTotal: R$ ${total.toFixed(2)}`;
-
-                const name = prompt("Informe seu nome:");
-                const paymentMethod = prompt("Informe sua forma de pagamento:");
-                const address = prompt("Informe seu endereço:");
-
-                cartContent += `\n\nCliente: ${name}\nForma de pagamento: ${paymentMethod}\nEndereço: ${address}`;
-
-                const cartLink = `https://wa.me/553534703859?text=${encodeURIComponent(cartContent)}`;
-                window.open(cartLink, "_blank");
+            let cartDetails = cart.map(item => `${item.name} - ${item.price}`).join("\n");
+            if (!cartDetails) {
+                cartDetails = "O carrinho está vazio.";
             }
-        }
+            const userName = prompt("Por favor, insira seu nome:");
+            const userAddress = prompt("Por favor, insira seu endereço:");
+            const paymentMethod = prompt("Escolha o método de pagamento: Pix, Cartão ou Boleto");
 
-        function filterByCategory() {
-            const selectedCategory = document.getElementById("categoryFilter").value;
-            const products = document.querySelectorAll(".product");
-
-            products.forEach(product => {
-                const categoryClass = selectedCategory.toLowerCase().replace(/\s+/g, '-');
-                product.style.display = selectedCategory === "todos" || product.classList.contains(categoryClass)
-                    ? "block"
-                    : "none";
-            });
-
-            document.getElementById("categoryTitle").textContent = selectedCategory === "todos"
-                ? "Todos os Produtos"
-                : selectedCategory;
+            alert(`Carrinho:\n${cartDetails}\nNome: ${userName}\nEndereço: ${userAddress}\nMétodo de pagamento: ${paymentMethod}`);
         }
 
         fetchData().then(products => {

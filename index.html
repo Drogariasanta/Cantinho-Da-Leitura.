@@ -1,10 +1,10 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Drogaria Santa Maria Pinheirinho</title>
     <style>
+        /* Estilos base */
         body {
             font-family: Arial, sans-serif;
             background-color: #e8f5e9;
@@ -13,16 +13,36 @@
             padding: 0;
         }
         header {
+            background-color: #f7f7f7; /* Cor do fundo alterada */
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centraliza o conteúdo */
             text-align: center;
+            position: relative;
+            height: 250px; /* Altura do cabeçalho aumentada */
         }
         header img {
-            max-width: 100%;
-            height: auto;
+            width: 100%; /* A imagem ocupa toda a largura */
+            object-fit: cover;
+            height: 280px; /* Ajuste para imagem maior */
+            transition: transform 0.3s ease;
+        }
+        header img:hover {
+            transform: scale(1.1); /* Efeito de relevo ao passar o mouse */
+        }
+        header h1 {
+            font-size: 2em;
+            color: #43a047; /* Cor verde */
+            margin: 0;
+            position: absolute;
+            text-align: center;
         }
         nav {
             text-align: center;
             background-color: #43a047;
             padding: 10px;
+            position: relative;
         }
         nav select {
             padding: 10px;
@@ -52,22 +72,22 @@
             text-align: center;
             flex: 1 1 calc(33.33% - 40px);
             box-sizing: border-box;
-            min-height: 400px;
+            min-height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
         .product img {
             max-width: 100%;
-            max-height: 180px;
+            height: auto;
             object-fit: contain;
             border-radius: 10px;
             margin-bottom: 10px;
-        }
-        .product:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .product h3 {
             font-size: 1.1em;
@@ -85,6 +105,9 @@
             font-size: 1.2em;
             margin: 10px 0;
         }
+        .button-group {
+            margin-top: 15px;
+        }
         .button-group .btn {
             background-color: #2e7d32;
             color: white;
@@ -100,6 +123,12 @@
         .button-group .btn:hover {
             background-color: #1b5e20;
         }
+        .button-group .btn.contact {
+            background-color: #43a047;
+        }
+        .button-group .btn.contact:hover {
+            background-color: #388e3c;
+        }
         #cartButton {
             background-color: #f44336;
             color: white;
@@ -113,20 +142,40 @@
             transition: background-color 0.3s ease;
             z-index: 10;
         }
+        #cartButton:hover {
+            background-color: #d32f2f;
+        }
         footer {
             background-color: #388e3c;
             color: white;
             text-align: center;
             padding: 15px 0;
+            font-size: 0.9em;
         }
+
+        /* Responsividade */
         @media (max-width: 768px) {
+            header {
+                height: 200px; /* Diminuir altura do cabeçalho no celular */
+            }
             .product {
-                flex: 1 1 calc(50% - 20px);
+                flex: 1 1 calc(50% - 40px);
             }
         }
+
         @media (max-width: 480px) {
+            header {
+                height: 150px; /* Ajuste adicional para celulares menores */
+            }
+            nav select {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+            .container {
+                padding: 10px;
+            }
             .product {
-                flex: 1 1 100%;
+                flex: 1 1 calc(100% - 40px);
             }
         }
     </style>
@@ -135,19 +184,30 @@
     <header>
         <img src="https://i.imgur.com/kg4nNxF.jpeg" alt="Logo Drogaria Santa Maria">
     </header>
+
     <nav>
-        <label for="categoryFilter" style="color: white;">Categoria:</label>
-        <select id="categoryFilter" onchange="filterByCategory()"></select>
+        <label for="categoryFilter" style="color: white; font-size: 1em; margin-right: 10px;">Selecione uma Categoria:</label>
+        <select id="categoryFilter" onchange="filterByCategory()">
+            <!-- Categorias serão carregadas dinamicamente -->
+        </select>
     </nav>
+
     <div class="container">
         <h2 id="categoryTitle">Todos os Produtos</h2>
-        <div id="productContainer"></div>
+        <div id="productContainer">
+            <!-- Produtos serão carregados dinamicamente -->
+        </div>
     </div>
-    <footer>© 2024 Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.</footer>
+
+    <footer>
+        © 2024 Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.
+    </footer>
+
     <button id="cartButton" onclick="viewCart()">Ver Carrinho</button>
 
     <script>
         const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQulmY7T7U6PseDk2kouwSzi7E_Fp_i8rxwuLawd4I77MPQvLP3PRGtWWE5_Oz0_MoPyQ2GqQYppGL-/pub?output=csv";
+
         let cart = [];
 
         async function fetchData() {
@@ -170,8 +230,10 @@
 
         function populateCategories(products) {
             const categoryFilter = document.getElementById("categoryFilter");
-            const uniqueCategories = Array.from(new Set(products.map(p => p["Categoria"]))).sort();
-            categoryFilter.innerHTML = '<option value="todos">Todos</option>';
+            const uniqueCategories = new Set(products.map(p => p["Categoria"]));
+
+            categoryFilter.innerHTML = "<option value='todos'>Todos</option>";
+
             uniqueCategories.forEach(category => {
                 if (category) {
                     categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
@@ -182,10 +244,12 @@
         function populateProducts(products) {
             const productContainer = document.getElementById("productContainer");
             productContainer.innerHTML = "";
+
             products.forEach(product => {
                 if (product["Nome do Produto"] && product["Categoria"]) {
-                    productContainer.innerHTML += `
-                        <div class="product ${product["Categoria"].toLowerCase()}">
+                    const categoryClass = product["Categoria"].toLowerCase().replace(/\s+/g, '-');
+                    const productElement = `
+                        <div class="product ${categoryClass}">
                             <img src="${product["Imagem"]}" alt="${product["Nome do Produto"]}">
                             <h3>${product["Nome do Produto"]}</h3>
                             <p>${product["Descrição do Produto"]}</p>
@@ -194,7 +258,9 @@
                                 <button class="btn" onclick="addToCart('${product["Nome do Produto"]}', '${product["Preço"]}')">Adicionar ao Carrinho</button>
                                 <a href="https://wa.me/553534703859?text=Gostaria%20de%20mais%20informações%20sobre%20${encodeURIComponent(product["Nome do Produto"])}" class="btn contact" target="_blank">Entrar em Contato</a>
                             </div>
-                        </div>`;
+                        </div>
+                    `;
+                    productContainer.innerHTML += productElement;
                 }
             });
         }
@@ -207,34 +273,45 @@
         function viewCart() {
             if (cart.length === 0) {
                 alert("Seu carrinho está vazio.");
-                return;
+            } else {
+                let cartContent = "Itens no carrinho:\n";
+                let total = 0;
+                cart.forEach(item => {
+                    cartContent += `- ${item.name} - ${item.price}\n`;
+                    total += parseFloat(item.price.replace("R$", "").replace(",", "."));
+                });
+
+                cartContent += `\nTotal: R$ ${total.toFixed(2)}`;
+
+                const name = prompt("Informe seu nome:");
+                const paymentMethod = prompt("Informe sua forma de pagamento:");
+
+                cartContent += `\n\nCliente: ${name}\nForma de pagamento: ${paymentMethod}`;
+
+                const cartLink = `https://wa.me/553534703859?text=${encodeURIComponent(cartContent)}`;
+                window.open(cartLink, "_blank");
             }
-            const customerName = prompt("Informe seu nome:");
-            if (!customerName) return alert("Nome não informado. Operação cancelada.");
-            const paymentMethod = prompt("Qual a forma de pagamento?");
-            if (!paymentMethod) return alert("Forma de pagamento não informada. Operação cancelada.");
-            const address = prompt("Informe o endereço de entrega:");
-            if (!address) return alert("Endereço não informado. Operação cancelada.");
-            let total = 0, message = `Nome: ${customerName}\nItens no carrinho:\n`;
-            cart.forEach(item => { 
-                message += `- ${item.name}: ${item.price}\n`; 
-                total += parseFloat(item.price.replace("R$", "").replace(",", "."));
-            });
-            message += `\nTotal: R$ ${total.toFixed(2)}\nEndereço: ${address}\nPagamento: ${paymentMethod}`;
-            window.open(`https://wa.me/553534703859?text=${encodeURIComponent(message)}`, "_blank");
         }
 
         function filterByCategory() {
-            const category = document.getElementById("categoryFilter").value;
-            document.querySelectorAll(".product").forEach(el => {
-                el.style.display = category === "todos" || el.classList.contains(category.toLowerCase()) ? "block" : "none";
+            const selectedCategory = document.getElementById("categoryFilter").value;
+            const products = document.querySelectorAll(".product");
+
+            products.forEach(product => {
+                const categoryClass = selectedCategory.toLowerCase().replace(/\s+/g, '-');
+                product.style.display = selectedCategory === "todos" || product.classList.contains(categoryClass)
+                    ? "block"
+                    : "none";
             });
-            document.getElementById("categoryTitle").textContent = category === "todos" ? "Todos os Produtos" : category;
+
+            document.getElementById("categoryTitle").textContent = selectedCategory === "todos"
+                ? "Todos os Produtos"
+                : selectedCategory;
         }
 
-        fetchData().then(data => {
-            populateCategories(data);
-            populateProducts(data);
+        fetchData().then(products => {
+            populateCategories(products);
+            populateProducts(products);
         });
     </script>
 </body>

@@ -15,24 +15,21 @@
         }
         header {
             background-color: #f7f7f7;
-            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
             height: 250px;
         }
         header img {
-            width: 500%;
+            width: auto;
+            height: 100%;
             object-fit: contain;
-            height: 280px;
         }
         nav {
             text-align: center;
             background-color: #43a047;
             padding: 10px;
-            position: relative;
         }
         nav select {
             padding: 10px;
@@ -50,37 +47,29 @@
         #productContainer {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
             gap: 20px;
+            justify-content: center;
         }
         .product {
             background: white;
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            width: calc(33% - 20px);
+            max-width: 300px;
             text-align: center;
-            flex: 1 1 calc(33.33% - 40px);
-            box-sizing: border-box;
-            min-height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
         .product img {
             max-width: 100%;
-            height: auto;
+            height: 180px;
             object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            margin: 10px 0;
         }
         .product h3 {
-            font-size: 1.1em;
+            font-size: 1em;
             margin: 10px 0;
             color: #333;
         }
@@ -90,41 +79,54 @@
             font-size: 1.2em;
             margin: 10px 0;
         }
+        .button-group {
+            margin: 10px 0;
+        }
         .button-group .btn {
+            display: inline-block;
             background-color: #2e7d32;
             color: white;
-            text-decoration: none;
             padding: 10px 15px;
             border-radius: 5px;
             font-size: 1em;
-            margin: 5px;
-            cursor: pointer;
+            text-decoration: none;
             transition: background-color 0.3s ease;
         }
         .button-group .btn:hover {
             background-color: #1b5e20;
+        }
+        .button-group .btn.contact {
+            background-color: #43a047;
+        }
+        .button-group .btn.contact:hover {
+            background-color: #388e3c;
+        }
+        #cartButton {
+            background-color: #f44336;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            position: fixed;
+            right: 10px;
+            bottom: 10%;
+            z-index: 10;
+            cursor: pointer;
         }
         footer {
             background-color: #388e3c;
             color: white;
             text-align: center;
             padding: 15px 0;
-            font-size: 0.9em;
         }
         @media (max-width: 768px) {
-            header {
-                height: 200px;
-            }
             .product {
-                flex: 1 1 calc(50% - 40px);
+                width: calc(50% - 20px);
             }
         }
         @media (max-width: 480px) {
-            header {
-                height: 150px;
-            }
             .product {
-                flex: 1 1 calc(100% - 40px);
+                width: 100%;
             }
         }
     </style>
@@ -134,7 +136,7 @@
         <img src="https://i.imgur.com/kg4nNxF.jpeg" alt="Logo Drogaria Santa Maria">
     </header>
     <nav>
-        <label for="categoryFilter" style="color: white; font-size: 1em; margin-right: 10px;">Selecione uma Categoria:</label>
+        <label for="categoryFilter" style="color: white;">Selecione uma Categoria:</label>
         <select id="categoryFilter" onchange="filterByCategory()"></select>
     </nav>
     <div class="container">
@@ -144,20 +146,22 @@
     <footer>
         © 2024 Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.
     </footer>
+    <button id="cartButton" onclick="viewCart()">Ver Carrinho</button>
     <script>
         const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQulmY7T7U6PseDk2kouwSzi7E_Fp_i8rxwuLawd4I77MPQvLP3PRGtWWE5_Oz0_MoPyQ2GqQYppGL-/pub?output=csv";
+        let cart = [];
 
         async function fetchData() {
             const response = await fetch(spreadsheetUrl);
             const data = await response.text();
             const rows = data.split("\n").map(row => row.split(","));
             const headers = rows[0];
-            return rows.slice(1).map(row => Object.fromEntries(headers.map((header, i) => [header, row[i]])));
+            return rows.slice(1).map(row => Object.fromEntries(headers.map((header, i) => [header.trim(), row[i]?.trim()])));
         }
 
         function populateCategories(products) {
             const categoryFilter = document.getElementById("categoryFilter");
-            const uniqueCategories = [...new Set(products.map(p => p.Categoria))].filter(Boolean);
+            const uniqueCategories = [...new Set(products.map(p => p["Categoria"]))].filter(Boolean).sort();
             categoryFilter.innerHTML = `<option value="todos">Todos</option>`;
             uniqueCategories.forEach(category => {
                 categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
@@ -167,25 +171,54 @@
         function populateProducts(products) {
             const productContainer = document.getElementById("productContainer");
             productContainer.innerHTML = products.map(product => `
-                <div class="product">
-                    <img src="${product.Imagem}" alt="${product['Nome do Produto']}">
-                    <h3>${product['Nome do Produto']}</h3>
-                    <div class="price">${product.Preço}</div>
+                <div class="product" data-category="${product["Categoria"]}">
+                    <img src="${product["Imagem"]}" alt="${product["Nome do Produto"]}">
+                    <h3>${product["Nome do Produto"]}</h3>
+                    <p>${product["Descrição do Produto"]}</p>
+                    <div class="price">${product["Preço"]}</div>
+                    <div class="button-group">
+                        <button class="btn" onclick="addToCart('${product["Nome do Produto"]}', '${product["Preço"]}')">Adicionar ao Carrinho</button>
+                        <a href="https://wa.me/553534703859?text=Gostaria%20de%20mais%20informações%20sobre%20${encodeURIComponent(product["Nome do Produto"])}" class="btn contact" target="_blank">Entrar em Contato</a>
+                    </div>
                 </div>
             `).join("");
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            alert(`${name} foi adicionado ao carrinho!`);
+        }
+
+        function viewCart() {
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio.");
+                return;
+            }
+            let message = "Itens no carrinho:\n";
+            let total = 0;
+            cart.forEach(item => {
+                message += `- ${item.name}: ${item.price}\n`;
+                total += parseFloat(item.price.replace("R$", "").replace(",", "."));
+            });
+            message += `\nTotal: R$ ${total.toFixed(2)}`;
+            const link = `https://wa.me/553534703859?text=${encodeURIComponent(message)}`;
+            window.open(link, "_blank");
+        }
+
+        function filterByCategory() {
+            const selectedCategory = document.getElementById("categoryFilter").value;
+            const products = document.querySelectorAll(".product");
+            products.forEach(product => {
+                product.style.display = selectedCategory === "todos" || product.dataset.category === selectedCategory
+                    ? "block"
+                    : "none";
+            });
         }
 
         fetchData().then(products => {
             populateCategories(products);
             populateProducts(products);
         });
-
-        function filterByCategory() {
-            const category = document.getElementById("categoryFilter").value;
-            document.querySelectorAll(".product").forEach(product => {
-                product.style.display = category === "todos" || product.textContent.includes(category) ? "" : "none";
-            });
-        }
     </script>
 </body>
 </html>

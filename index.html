@@ -18,10 +18,10 @@
             padding: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Centraliza o conteúdo */
             text-align: center;
             position: relative;
-            height: 250px;
+            height: 250px; /* Altura do cabeçalho aumentada */
         }
         header img {
             width: 500%;
@@ -30,7 +30,7 @@
         }
         header h1 {
             font-size: 2em;
-            color: #43a047;
+            color: #43a047; 
             margin: 0;
             position: absolute;
             text-align: center;
@@ -65,11 +65,11 @@
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 15px;
             text-align: center;
-            flex: 1 1 calc(33.33% - 40px);
+            flex: 1 1 calc(33.33% - 40px); /* Flexível para 3 colunas */
             box-sizing: border-box;
-            min-height: 350px;
+            min-height: 250px; /* Tamanho fixo reduzido */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -85,6 +85,7 @@
             object-fit: contain;
             border-radius: 10px;
             margin-bottom: 10px;
+            max-height: 150px;
         }
         .product h3 {
             font-size: 1.1em;
@@ -109,7 +110,7 @@
             background-color: #2e7d32;
             color: white;
             text-decoration: none;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 5px;
             font-size: 1em;
             margin: 5px;
@@ -149,30 +150,12 @@
             padding: 15px 0;
             font-size: 0.9em;
         }
-
-        /* Responsividade */
         @media (max-width: 768px) {
-            header {
-                height: 200px;
+            #productContainer {
+                flex-direction: column; /* Exibe os produtos em uma coluna no celular */
             }
             .product {
-                flex: 1 1 calc(50% - 40px);
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                height: 150px;
-            }
-            nav select {
-                font-size: 0.9em;
-                padding: 8px;
-            }
-            .container {
-                padding: 10px;
-            }
-            .product {
-                flex: 1 1 calc(100% - 40px);
+                flex: 1 1 100%; /* Ocupa toda a largura no celular */
             }
         }
     </style>
@@ -228,15 +211,12 @@
         function populateCategories(products) {
             const categoryFilter = document.getElementById("categoryFilter");
             const uniqueCategories = new Set(products.map(p => p["Categoria"]));
-
-            categoryFilter.innerHTML = '<option value="todos">Todos</option>';
-
-            const sortedCategories = Array.from(uniqueCategories).sort();
+            
+            // Categorias ordenadas em ordem alfabética, mas "Todos" em primeiro
+            const sortedCategories = ["todos", ...Array.from(uniqueCategories).sort()];
 
             sortedCategories.forEach(category => {
-                if (category) {
-                    categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
-                }
+                categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
             });
         }
 
@@ -265,44 +245,51 @@
 
         function addToCart(name, price) {
             cart.push({ name, price });
-            alert(`${name} adicionado ao carrinho.`);
+            alert(`${name} foi adicionado ao carrinho!`);
         }
 
         function viewCart() {
-            let cartMessage = "Carrinho de compras:\n";
-            cart.forEach(item => {
-                cartMessage += `${item.name} - ${item.price}\n`;
-            });
-
-            cartMessage += "\nPor favor, informe seu nome, forma de pagamento e endereço:";
-            
-            const name = prompt("Digite seu nome:");
-            const paymentMethod = prompt("Escolha a forma de pagamento:");
-            const address = prompt("Digite seu endereço:");
-
-            if (name && paymentMethod && address) {
-                const message = `${cartMessage}\nNome: ${name}\nForma de pagamento: ${paymentMethod}\nEndereço: ${address}`;
-                window.location.href = `https://wa.me/553534703859?text=${encodeURIComponent(message)}`;
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio.");
             } else {
-                alert("Preencha todas as informações.");
+                let cartContent = "Itens no carrinho:\n";
+                let total = 0;
+                cart.forEach(item => {
+                    cartContent += `${item.name} - ${item.price}\n`;
+                    total += parseFloat(item.price.replace("R$", "").trim());
+                });
+
+                const customerName = prompt("Digite seu nome:");
+                const paymentMethod = prompt("Digite a forma de pagamento:");
+                const address = prompt("Digite seu endereço:");
+
+                const orderMessage = `Pedido de ${customerName}:\n${cartContent}Total: R$ ${total}\nForma de pagamento: ${paymentMethod}\nEndereço: ${address}`;
+
+                const whatsappUrl = `https://wa.me/553534703859?text=${encodeURIComponent(orderMessage)}`;
+                window.open(whatsappUrl, "_blank");
             }
+        }
+
+        async function init() {
+            const products = await fetchData();
+            populateCategories(products);
+            populateProducts(products);
         }
 
         function filterByCategory() {
             const selectedCategory = document.getElementById("categoryFilter").value;
-            const filteredProducts = products.filter(p => selectedCategory === "todos" || p["Categoria"] === selectedCategory);
-            populateProducts(filteredProducts);
+            document.getElementById("categoryTitle").textContent = selectedCategory === "todos" ? "Todos os Produtos" : selectedCategory;
 
-            document.getElementById("categoryTitle").innerText = selectedCategory === "todos" ? "Todos os Produtos" : selectedCategory;
+            fetchData().then(products => {
+                const filteredProducts = selectedCategory === "todos" 
+                    ? products 
+                    : products.filter(product => product["Categoria"] === selectedCategory);
+
+                populateProducts(filteredProducts);
+            });
         }
 
-        let products = [];
-
-        fetchData().then(data => {
-            products = data;
-            populateCategories(products);
-            populateProducts(products);
-        });
+        init();
     </script>
 </body>
 </html>

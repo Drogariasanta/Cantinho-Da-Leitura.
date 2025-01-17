@@ -24,13 +24,13 @@
             height: 250px; /* Altura do cabeçalho aumentada */
         }
         header img {
-            width: 500%; /* Aumenta ainda mais a imagem do cabeçalho */
+            width: 500%;
             object-fit: contain;
-            height: 280px; /* Ajuste para imagem maior */
+            height: 280px;
         }
         header h1 {
             font-size: 2em;
-            color: #43a047; /* Cor verde */
+            color: #43a047; 
             margin: 0;
             position: absolute;
             text-align: center;
@@ -85,7 +85,7 @@
             object-fit: contain;
             border-radius: 10px;
             margin-bottom: 10px;
-            max-height: 150px; /* Tamanho da imagem ajustado */
+            max-height: 150px;
         }
         .product h3 {
             font-size: 1.1em;
@@ -151,31 +151,6 @@
             font-size: 0.9em;
         }
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            header {
-                height: 200px; /* Diminuir altura do cabeçalho no celular */
-            }
-            .product {
-                flex: 1 1 calc(50% - 40px); /* Para celulares, 2 colunas */
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                height: 150px; /* Ajuste adicional para celulares menores */
-            }
-            nav select {
-                font-size: 0.9em;
-                padding: 8px;
-            }
-            .container {
-                padding: 10px;
-            }
-            .product {
-                flex: 1 1 calc(100% - 40px); /* Para celulares menores, 1 coluna */
-            }
-        }
     </style>
 </head>
 <body>
@@ -229,11 +204,14 @@
         function populateCategories(products) {
             const categoryFilter = document.getElementById("categoryFilter");
             const uniqueCategories = new Set(products.map(p => p["Categoria"]));
-            const sortedCategories = ["Todos", ...Array.from(uniqueCategories).sort()];
 
-            categoryFilter.innerHTML = sortedCategories.map(category => 
-                `<option value="${category}">${category}</option>`
-            ).join("");
+            categoryFilter.innerHTML = '<option value="todos">Todos</option>';
+
+            uniqueCategories.forEach(category => {
+                if (category) {
+                    categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
+                }
+            });
         }
 
         function populateProducts(products) {
@@ -248,10 +226,10 @@
                             <img src="${product["Imagem"]}" alt="${product["Nome do Produto"]}">
                             <h3>${product["Nome do Produto"]}</h3>
                             <p>${product["Descrição do Produto"]}</p>
-                            <p class="price">R$ ${parseFloat(product["Preço"]).toFixed(2)}</p>
+                            <div class="price">${product["Preço"]}</div>
                             <div class="button-group">
                                 <button class="btn" onclick="addToCart('${product["Nome do Produto"]}', '${product["Preço"]}')">Adicionar ao Carrinho</button>
-                                <a href="https://wa.me/553534703859?text=Quero%20comprar%20${encodeURIComponent(product["Nome do Produto"])}" class="btn contact">Contatar no WhatsApp</a>
+                                <a href="https://wa.me/553534703859?text=Gostaria%20de%20mais%20informações%20sobre%20${encodeURIComponent(product["Nome do Produto"])}" class="btn contact" target="_blank">Entrar em Contato</a>
                             </div>
                         </div>`;
                     productContainer.innerHTML += productElement;
@@ -259,51 +237,53 @@
             });
         }
 
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            alert(`${name} foi adicionado ao carrinho!`);
+        }
+
+        function viewCart() {
+            if (cart.length === 0) {
+                alert("Seu carrinho está vazio.");
+            } else {
+                let cartContent = "Itens no carrinho:\n";
+                let total = 0;
+                cart.forEach(item => {
+                    cartContent += `${item.name} - ${item.price}\n`;
+                    total += parseFloat(item.price.replace("R$", "").trim());
+                });
+
+                const customerName = prompt("Digite seu nome:");
+                const paymentMethod = prompt("Digite a forma de pagamento:");
+                const address = prompt("Digite seu endereço:");
+
+                const orderMessage = `Pedido de ${customerName}:\n${cartContent}Total: R$ ${total}\nForma de pagamento: ${paymentMethod}\nEndereço: ${address}`;
+
+                const whatsappUrl = `https://wa.me/553534703859?text=${encodeURIComponent(orderMessage)}`;
+                window.open(whatsappUrl, "_blank");
+            }
+        }
+
+        async function init() {
+            const products = await fetchData();
+            populateCategories(products);
+            populateProducts(products);
+        }
+
         function filterByCategory() {
-            const category = document.getElementById("categoryFilter").value;
-            const categoryTitle = document.getElementById("categoryTitle");
+            const selectedCategory = document.getElementById("categoryFilter").value;
+            document.getElementById("categoryTitle").textContent = selectedCategory === "todos" ? "Todos os Produtos" : selectedCategory;
 
             fetchData().then(products => {
-                let filteredProducts = products;
-
-                if (category && category !== "Todos") {
-                    filteredProducts = products.filter(product => 
-                        product["Categoria"].toLowerCase() === category.toLowerCase()
-                    );
-                    categoryTitle.textContent = `Produtos da Categoria: ${category}`;
-                } else {
-                    categoryTitle.textContent = "Todos os Produtos";
-                }
+                const filteredProducts = selectedCategory === "todos" 
+                    ? products 
+                    : products.filter(product => product["Categoria"] === selectedCategory);
 
                 populateProducts(filteredProducts);
             });
         }
 
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            alert(`${name} foi adicionado ao carrinho.`);
-        }
-
-        function viewCart() {
-            if (cart.length === 0) {
-                alert("O carrinho está vazio.");
-                return;
-            }
-
-            let cartDetails = cart.map(item => `${item.name} - R$ ${parseFloat(item.price).toFixed(2)}`).join("\n");
-            const userName = prompt("Por favor, insira seu nome:");
-            const userAddress = prompt("Por favor, insira seu endereço:");
-            const paymentMethod = prompt("Escolha o método de pagamento: Pix ou Cartão");
-
-            alert(`Carrinho:\n${cartDetails}\nNome: ${userName}\nEndereço: ${userAddress}\nMétodo de pagamento: ${paymentMethod}`);
-
-            window.location.href = `https://wa.me/553534703859?text=Carrinho:%0A${cartDetails}%0ANome:%20${userName}%0AEndereço:%20${userAddress}%0AMétodo%20de%20Pagamento:%20${paymentMethod}`;
-        }
-
-        fetchData().then(products => {
-            populateCategories(products);
-            populateProducts(products);
-        });
+        init();
     </script>
 </body>
 </html>

@@ -229,7 +229,7 @@
         function populateCategories(products) {
             const categoryFilter = document.getElementById("categoryFilter");
             const uniqueCategories = new Set(products.map(p => p["Categoria"]));
-            const sortedCategories = ["todos", ...Array.from(uniqueCategories).sort()];
+            const sortedCategories = ["Todos", ...Array.from(uniqueCategories).sort()];
 
             categoryFilter.innerHTML = sortedCategories.map(category => 
                 `<option value="${category}">${category}</option>`
@@ -248,10 +248,10 @@
                             <img src="${product["Imagem"]}" alt="${product["Nome do Produto"]}">
                             <h3>${product["Nome do Produto"]}</h3>
                             <p>${product["Descrição do Produto"]}</p>
-                            <div class="price">${product["Preço"]}</div>
+                            <p class="price">R$ ${parseFloat(product["Preço"]).toFixed(2)}</p>
                             <div class="button-group">
                                 <button class="btn" onclick="addToCart('${product["Nome do Produto"]}', '${product["Preço"]}')">Adicionar ao Carrinho</button>
-                                <a href="https://wa.me/553534703859?text=Quero%20comprar%20${product["Nome do Produto"]}" class="btn contact">Contatar no WhatsApp</a>
+                                <a href="https://wa.me/553534703859?text=Quero%20comprar%20${encodeURIComponent(product["Nome do Produto"])}" class="btn contact">Contatar no WhatsApp</a>
                             </div>
                         </div>`;
                     productContainer.innerHTML += productElement;
@@ -266,7 +266,7 @@
             fetchData().then(products => {
                 let filteredProducts = products;
 
-                if (category && category !== "todos") {
+                if (category && category !== "Todos") {
                     filteredProducts = products.filter(product => 
                         product["Categoria"].toLowerCase() === category.toLowerCase()
                     );
@@ -285,15 +285,19 @@
         }
 
         function viewCart() {
-            let cartDetails = cart.map(item => `${item.name} - ${item.price}`).join("\n");
-            if (!cartDetails) {
-                cartDetails = "O carrinho está vazio.";
+            if (cart.length === 0) {
+                alert("O carrinho está vazio.");
+                return;
             }
+
+            let cartDetails = cart.map(item => `${item.name} - R$ ${parseFloat(item.price).toFixed(2)}`).join("\n");
             const userName = prompt("Por favor, insira seu nome:");
             const userAddress = prompt("Por favor, insira seu endereço:");
-            const paymentMethod = prompt("Escolha o método de pagamento: Pix, Cartão ou Boleto");
+            const paymentMethod = prompt("Escolha o método de pagamento: Pix ou Cartão");
 
             alert(`Carrinho:\n${cartDetails}\nNome: ${userName}\nEndereço: ${userAddress}\nMétodo de pagamento: ${paymentMethod}`);
+
+            window.location.href = `https://wa.me/553534703859?text=Carrinho:%0A${cartDetails}%0ANome:%20${userName}%0AEndereço:%20${userAddress}%0AMétodo%20de%20Pagamento:%20${paymentMethod}`;
         }
 
         fetchData().then(products => {

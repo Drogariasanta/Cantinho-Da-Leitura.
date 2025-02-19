@@ -24,7 +24,7 @@
             font-weight: bold;
         }
         .container {
-            max-width: 800px;
+            max-width: 90%;
             margin: 20px auto;
             background: white;
             padding: 20px;
@@ -42,13 +42,27 @@
             padding: 15px;
             border-radius: 10px;
             text-align: center;
-            width: 200px;
+            width: 100%;
+            max-width: 200px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
         .book img {
             width: 100px;
             height: auto;
             border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .header {
+                font-size: 20px;
+                padding: 15px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .book {
+                width: 100%;
+                max-width: 150px;
+            }
         }
     </style>
 </head>

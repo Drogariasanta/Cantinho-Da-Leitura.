@@ -95,9 +95,10 @@
             products = rows.map(row => {
                 const cols = row.split(",");
                 return {
-                    image: cols[0],
-                    name: cols[1],
-                    price: cols[4]
+                    name: cols[0],
+                    price: cols[1],
+                    description: cols[2],
+                    image: cols[3]
                 };
             });
             renderPages();
@@ -114,7 +115,9 @@
                 page.innerHTML = `
                     <div class="product">
                         <img src="${product.image}" alt="Produto">
-                        <p>${product.name} - R$ ${product.price}</p>
+                        <p><strong>${product.name}</strong></p>
+                        <p>R$ ${product.price}</p>
+                        <p>${product.description}</p>
                     </div>
                 `;
                 book.appendChild(page);

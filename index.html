@@ -58,17 +58,30 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .book img {
+        .carousel {
+            position: relative;
             width: 100%;
             max-width: 150px;
+            margin: auto;
+        }
+        .carousel img {
+            width: 100%;
             height: auto;
             border-radius: 5px;
-            margin: 5px;
         }
-        .book:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 50%;
         }
+        .prev { left: 0; }
+        .next { right: 0; }
         @media (max-width: 600px) {
             .header {
                 font-size: 22px;
@@ -123,7 +136,13 @@
             books.forEach(book => {
                 const bookDiv = document.createElement("div");
                 bookDiv.classList.add("book");
-                let imagesHTML = book.images.map(img => `<img src="${img}" alt="Livro">`).join('');
+                let imagesHTML = `
+                    <div class="carousel">
+                        <button class="prev" onclick="prevImage(this)">&lt;</button>
+                        <img src="${book.images[0]}" alt="Livro">
+                        <button class="next" onclick="nextImage(this)">&gt;</button>
+                    </div>
+                `;
                 bookDiv.innerHTML = `
                     ${imagesHTML}
                     <h3>${book.title}</h3>
@@ -134,12 +153,20 @@
             });
         }
 
-        function filterBooks() {
-            const searchQuery = document.getElementById("search").value.toLowerCase();
-            displayBooks(books.filter(book => 
-                book.title.toLowerCase().includes(searchQuery) || 
-                book.description.toLowerCase().includes(searchQuery)
-            ));
+        function prevImage(button) {
+            let carousel = button.parentElement;
+            let img = carousel.querySelector("img");
+            let book = books.find(b => b.images.includes(img.src));
+            let index = book.images.indexOf(img.src);
+            img.src = book.images[(index - 1 + book.images.length) % book.images.length];
+        }
+
+        function nextImage(button) {
+            let carousel = button.parentElement;
+            let img = carousel.querySelector("img");
+            let book = books.find(b => b.images.includes(img.src));
+            let index = book.images.indexOf(img.src);
+            img.src = book.images[(index + 1) % book.images.length];
         }
 
         loadBooks();

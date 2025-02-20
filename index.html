@@ -156,6 +156,9 @@
       .search-bar input {
         width: 90%;
       }
+      .carousel img {
+        max-height: 200px; /* Ajuste para telas menores */
+      }
     }
     
     .loading {
@@ -196,7 +199,6 @@
             title: cols[0],
             price: cols[1],
             description: cols[2],
-            // Coleta todas as colunas de imagem a partir da 4ª (índice 3)
             images: cols.slice(3).filter(img => img.trim() !== "")
           };
         });
@@ -218,11 +220,9 @@
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book");
     
-        // Cria o container do carousel
         const carouselDiv = document.createElement("div");
         carouselDiv.classList.add("carousel");
     
-        // Cria o elemento da imagem
         const imgEl = document.createElement("img");
         imgEl.alt = "Livro";
         if (book.images.length > 0) {
@@ -231,12 +231,10 @@
           imgEl.src = "https://via.placeholder.com/150";
         }
     
-        // Botão anterior com ícone Font Awesome
         const prevButton = document.createElement("button");
         prevButton.classList.add("prev");
         prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
     
-        // Botão próximo com ícone Font Awesome
         const nextButton = document.createElement("button");
         nextButton.classList.add("next");
         nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
@@ -246,7 +244,6 @@
         carouselDiv.appendChild(nextButton);
         bookDiv.appendChild(carouselDiv);
     
-        // Adiciona detalhes do livro
         const titleEl = document.createElement("h3");
         titleEl.textContent = book.title;
         bookDiv.appendChild(titleEl);
@@ -261,7 +258,6 @@
     
         bookList.appendChild(bookDiv);
     
-        // Funcionalidade do carousel
         let currentImageIndex = 0;
         if (book.images.length > 1) {
           prevButton.addEventListener("click", () => {

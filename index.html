@@ -33,7 +33,7 @@
       z-index: -1;
     }
     
-    /* Header com logotipo e gradiente de cores */
+    /* Header simples */
     .header {
       background: linear-gradient(90deg, #28a745, #007bff, #dc3545);
       color: white;
@@ -43,11 +43,6 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .header .logo {
-      width: 60px;
-      height: auto;
-      margin-right: 15px;
     }
     .header span {
       font-size: 28px;
@@ -125,17 +120,17 @@
       transition: opacity 0.3s ease-in-out;
     }
     
-    /* Botões do carousel com gradiente usando as três cores */
+    /* Botões do carousel mais bonitos e visíveis */
     .prev, .next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: linear-gradient(45deg, #28a745, #007bff, #dc3545);
+      background: rgba(0, 123, 255, 0.8);
       border: none;
       border-radius: 50%;
       width: 40px;
       height: 40px;
-      color: #fff;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -146,7 +141,7 @@
     }
     .prev:hover, .next:hover {
       transform: scale(1.1);
-      background: linear-gradient(45deg, #dc3545, #007bff, #28a745);
+      background: rgba(255, 0, 0, 0.8);
     }
     .prev { left: 5px; }
     .next { right: 5px; }
@@ -174,7 +169,6 @@
 </head>
 <body>
   <div class="header">
-    <img src="https://i.imgur.com/kg4nNxF.png" alt="Logo da Farmácia" class="logo">
     <span>Cantinho da Leitura - Drogaria Santa Maria Pinheirinho</span>
   </div>
   

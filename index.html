@@ -8,7 +8,8 @@
     <style>
         body {
             font-family: 'Merriweather', serif;
-            background: url('https://www.transparenttextures.com/patterns/books.png') repeat, linear-gradient(to right, #f0e5d8, #f9f1e7);
+            background: url('https://png.pngtree.com/thumb_back/fw800/background/20210115/pngtree-hand-drawn-vintage-book-sketch-background-image_528799.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
@@ -80,8 +81,8 @@
             padding: 5px 10px;
             border-radius: 50%;
         }
-        .prev { left: 0; }
-        .next { right: 0; }
+        .prev { left: -15px; }
+        .next { right: -15px; }
         @media (max-width: 600px) {
             .header {
                 font-size: 22px;
@@ -138,9 +139,9 @@
                 bookDiv.classList.add("book");
                 let imagesHTML = `
                     <div class="carousel">
-                        <button class="prev" onclick="prevImage(this)">&lt;</button>
+                        <button class="prev" onclick="changeImage(this, -1)">&lt;</button>
                         <img src="${book.images[0]}" alt="Livro">
-                        <button class="next" onclick="nextImage(this)">&gt;</button>
+                        <button class="next" onclick="changeImage(this, 1)">&gt;</button>
                     </div>
                 `;
                 bookDiv.innerHTML = `
@@ -153,20 +154,22 @@
             });
         }
 
-        function prevImage(button) {
+        function changeImage(button, direction) {
             let carousel = button.parentElement;
             let img = carousel.querySelector("img");
             let book = books.find(b => b.images.includes(img.src));
             let index = book.images.indexOf(img.src);
-            img.src = book.images[(index - 1 + book.images.length) % book.images.length];
+            img.src = book.images[(index + direction + book.images.length) % book.images.length];
         }
 
-        function nextImage(button) {
-            let carousel = button.parentElement;
-            let img = carousel.querySelector("img");
-            let book = books.find(b => b.images.includes(img.src));
-            let index = book.images.indexOf(img.src);
-            img.src = book.images[(index + 1) % book.images.length];
+        function filterBooks() {
+            const searchQuery = document.getElementById("search").value.toLowerCase();
+            const filteredBooks = books.filter(book => 
+                book.title.toLowerCase().includes(searchQuery) || 
+                book.description.toLowerCase().includes(searchQuery)
+            );
+            document.getElementById("book-list").innerHTML = "";
+            filteredBooks.forEach(book => displayBooks(book));
         }
 
         loadBooks();

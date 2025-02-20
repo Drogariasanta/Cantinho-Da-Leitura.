@@ -9,23 +9,47 @@
   <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/2MuC0FZsF6gC1GVR1VBj5sD8R6lM5Q59gG8bRhC20g5+KmdW5jL5e2rH+pX0FpHFLZzlA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
+    /* Fundo com imagem e overlay */
     body {
       font-family: 'Merriweather', serif;
       background: url('https://images.unsplash.com/photo-1519681393781-71e4459e59a0?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg5NzZ8MHwxfGFsbHwxfHx8fHx8fHwxNjI1NzEwMjg3&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center fixed;
       background-size: cover;
       margin: 0;
       padding: 0;
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+    /* Overlay para suavizar o fundo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.8);
+      z-index: -1;
+    }
     
+    /* Header com logotipo e gradiente de cores */
     .header {
-      background: rgba(211, 47, 47, 0.9);
+      background: linear-gradient(90deg, #28a745, #007bff, #dc3545);
       color: white;
       padding: 20px;
       width: 100%;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .header .logo {
+      width: 60px;
+      height: auto;
+      margin-right: 15px;
+    }
+    .header span {
       font-size: 28px;
       font-weight: bold;
     }
@@ -55,7 +79,7 @@
       transition: border 0.3s;
     }
     .search-bar input:focus {
-      border: 1px solid #d32f2f;
+      border: 1px solid #007bff;
       outline: none;
     }
     
@@ -101,11 +125,12 @@
       transition: opacity 0.3s ease-in-out;
     }
     
+    /* Botões do carousel com gradiente usando as três cores */
     .prev, .next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      background: linear-gradient(45deg, #28a745, #007bff, #dc3545);
       border: none;
       border-radius: 50%;
       width: 40px;
@@ -121,15 +146,14 @@
     }
     .prev:hover, .next:hover {
       transform: scale(1.1);
-      background: linear-gradient(45deg, #ff4b2b, #ff416c);
+      background: linear-gradient(45deg, #dc3545, #007bff, #28a745);
     }
     .prev { left: 5px; }
     .next { right: 5px; }
     
     @media (max-width: 600px) {
-      .header {
+      .header span {
         font-size: 22px;
-        padding: 15px;
       }
       .container {
         padding: 15px;
@@ -142,14 +166,17 @@
     .loading {
       font-size: 20px;
       font-weight: bold;
-      color: #d32f2f;
+      color: #dc3545;
       text-align: center;
       margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="header">Cantinho da Leitura - Drogaria Santa Maria Pinheirinho</div>
+  <div class="header">
+    <img src="https://i.imgur.com/kg4nNxF.png" alt="Logo da Farmácia" class="logo">
+    <span>Cantinho da Leitura - Drogaria Santa Maria Pinheirinho</span>
+  </div>
   
   <div class="container">
     <div class="search-bar">
@@ -207,7 +234,7 @@
         if (book.images.length > 0) {
           imgEl.src = book.images[0];
         } else {
-          imgEl.src = "https://via.placeholder.com/150"; // Imagem placeholder
+          imgEl.src = "https://via.placeholder.com/150";
         }
     
         // Botão anterior com ícone Font Awesome
@@ -252,7 +279,6 @@
             imgEl.src = book.images[currentImageIndex];
           });
         } else {
-          // Se houver apenas uma imagem, oculta os botões
           prevButton.style.display = "none";
           nextButton.style.display = "none";
         }

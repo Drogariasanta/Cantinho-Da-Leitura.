@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Merriweather', serif;
-            background: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2510994-seamless-background-pattern-flat-design-concept-books-vector-illustrate-gratis-vetor.jpg') no-repeat center center fixed;
+            background: url('https://images.unsplash.com/photo-1519681393781-71e4459e59a0?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg5NzZ8MHwxfGFsbHwxfHx8fHx8fHwxNjI1NzEwMjg3&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -17,7 +17,7 @@
             align-items: center;
         }
         .header {
-            background: #d32f2f;
+            background: rgba(211, 47, 47, 0.9);
             color: white;
             padding: 20px;
             width: 100%;
@@ -63,30 +63,31 @@
         .carousel {
             position: relative;
             width: 100%;
-            max-width: 150px;
+            max-width: 200px;
             margin: auto;
             overflow: hidden;
+            border-radius: 8px;
         }
         .carousel img {
             width: 100%;
             height: auto;
-            border-radius: 5px;
             display: block;
+            transition: opacity 0.5s ease;
         }
         .prev, .next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             border: none;
             cursor: pointer;
-            padding: 5px 10px;
+            padding: 10px;
             border-radius: 50%;
             z-index: 10;
         }
-        .prev { left: 5px; }
-        .next { right: 5px; }
+        .prev { left: 10px; }
+        .next { right: 10px; }
         @media (max-width: 600px) {
             .header {
                 font-size: 22px;

@@ -44,6 +44,7 @@
             border-radius: 25px;
             border: 1px solid #ccc;
             font-size: 16px;
+            box-sizing: border-box;
         }
         .book-list {
             display: grid;
@@ -64,11 +65,13 @@
             width: 100%;
             max-width: 150px;
             margin: auto;
+            overflow: hidden;
         }
         .carousel img {
             width: 100%;
             height: auto;
             border-radius: 5px;
+            display: block;
         }
         .prev, .next {
             position: absolute;
@@ -80,9 +83,10 @@
             cursor: pointer;
             padding: 5px 10px;
             border-radius: 50%;
+            z-index: 10;
         }
-        .prev { left: 0; }
-        .next { right: 0; }
+        .prev { left: 5px; }
+        .next { right: 5px; }
         @media (max-width: 600px) {
             .header {
                 font-size: 22px;
@@ -139,9 +143,9 @@
                 bookDiv.classList.add("book");
                 let imagesHTML = `
                     <div class="carousel">
-                        <button class="prev" onclick="changeImage(event, -1)">&lt;</button>
+                        <button class="prev" onclick="changeImage(this, -1)">&lt;</button>
                         <img src="${book.images[0]}" alt="Livro">
-                        <button class="next" onclick="changeImage(event, 1)">&gt;</button>
+                        <button class="next" onclick="changeImage(this, 1)">&gt;</button>
                     </div>
                 `;
                 bookDiv.innerHTML = `
@@ -154,8 +158,8 @@
             });
         }
 
-        function changeImage(event, direction) {
-            let carousel = event.target.parentElement;
+        function changeImage(button, direction) {
+            let carousel = button.parentElement;
             let img = carousel.querySelector("img");
             let book = books.find(b => b.images.includes(img.src));
             let index = book.images.indexOf(img.src);

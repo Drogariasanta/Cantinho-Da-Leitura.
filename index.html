@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Merriweather', serif;
-            background: url('https://png.pngtree.com/thumb_back/fw800/background/20210115/pngtree-hand-drawn-vintage-book-sketch-background-image_528799.jpg') no-repeat center center fixed;
+            background: url('https://static.vecteezy.com/ti/vetor-gratis/p1/2510994-seamless-background-pattern-flat-design-concept-books-vector-illustrate-gratis-vetor.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -81,8 +81,8 @@
             padding: 5px 10px;
             border-radius: 50%;
         }
-        .prev { left: -15px; }
-        .next { right: -15px; }
+        .prev { left: 0; }
+        .next { right: 0; }
         @media (max-width: 600px) {
             .header {
                 font-size: 22px;
@@ -139,9 +139,9 @@
                 bookDiv.classList.add("book");
                 let imagesHTML = `
                     <div class="carousel">
-                        <button class="prev" onclick="changeImage(this, -1)">&lt;</button>
+                        <button class="prev" onclick="changeImage(event, -1)">&lt;</button>
                         <img src="${book.images[0]}" alt="Livro">
-                        <button class="next" onclick="changeImage(this, 1)">&gt;</button>
+                        <button class="next" onclick="changeImage(event, 1)">&gt;</button>
                     </div>
                 `;
                 bookDiv.innerHTML = `
@@ -154,8 +154,8 @@
             });
         }
 
-        function changeImage(button, direction) {
-            let carousel = button.parentElement;
+        function changeImage(event, direction) {
+            let carousel = event.target.parentElement;
             let img = carousel.querySelector("img");
             let book = books.find(b => b.images.includes(img.src));
             let index = book.images.indexOf(img.src);

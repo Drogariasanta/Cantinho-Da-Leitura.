@@ -5,76 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carnaval 2025 - Drogaria Santa Maria Pinheirinho</title>
     <style>
-        /* Reset de estilos globais */
+        /* Reset e estilos globais */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-
         body {
-            background: linear-gradient(45deg, #ff4081, #ff9100, #ffd600, #00bcd4);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: url('https://img.freepik.com/vetores-premium/fundo-de-mascara-de-carnaval_29865-637.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #fff;
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
 
-        @keyframes gradientBG {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-
-        /* Confetes animados - Realistas */
+        /* Confetes mais realistas */
         .confetti {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 15px;
+            height: 15px;
             background-color: #ff5722;
-            opacity: 0;
-            animation: confetti 8s ease-in-out infinite;
+            animation: confetti 6s ease-in-out infinite;
             transform-origin: center;
             border-radius: 50%;
+            opacity: 0;
             pointer-events: none;
             z-index: 1;
         }
 
         @keyframes confetti {
-            0% {top: -10px; opacity: 1; transform: rotate(0deg) scale(1);}
-            50% {top: 100%; opacity: 0.7; transform: rotate(720deg) scale(0.9);}
-            100% {top: -10px; opacity: 0; transform: rotate(1440deg) scale(1);}
+            0% {top: -10px; opacity: 1; transform: rotate(0deg);}
+            50% {top: 100%; opacity: 0.9; transform: rotate(360deg) scale(1.2);}
+            100% {top: -10px; opacity: 0; transform: rotate(720deg);}
         }
 
-        /* Confetes com cores e tamanhos variados */
         .confetti:nth-child(odd) {
             background-color: #ff5722;
+            width: 12px;
+            height: 12px;
             animation-delay: 0s;
-            width: 14px;
-            height: 14px;
         }
         .confetti:nth-child(even) {
             background-color: #4caf50;
+            width: 14px;
+            height: 14px;
             animation-delay: 1s;
-            width: 16px;
-            height: 16px;
         }
         .confetti:nth-child(3n) {
             background-color: #2196f3;
-            animation-delay: 2s;
             width: 18px;
             height: 18px;
+            animation-delay: 2s;
         }
         .confetti:nth-child(4n) {
             background-color: #ffeb3b;
-            animation-delay: 0.5s;
             width: 10px;
             height: 10px;
+            animation-delay: 0.5s;
         }
 
-        /* Máscaras de Carnaval (usando emojis) */
+        /* Máscaras de Carnaval com Emojis */
         .header-masks {
             position: absolute;
             top: -70px;
@@ -83,12 +75,14 @@
             display: flex;
             justify-content: center;
             gap: 25px;
-            font-size: 3em;
+            font-size: 3.5em;
             z-index: 2;
+            animation: floatMask 5s ease-in-out infinite;
         }
 
         .mask {
             animation: floatMask 5s ease-in-out infinite;
+            transform-origin: center;
         }
 
         @keyframes floatMask {
@@ -102,14 +96,14 @@
 
         /* Cabeçalho */
         header {
-            background-color: #ff4081;
+            background-color: rgba(255, 64, 129, 0.7);
             color: #fff;
-            padding: 20px;
+            padding: 20px 0;
             font-size: 2.5em;
             font-weight: bold;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
             margin-bottom: 30px;
             position: relative;
             z-index: 3;
@@ -155,6 +149,7 @@
             font-size: 1.4em;
             margin: 10px 0;
             color: #ff5722;
+            font-family: 'Arial', sans-serif;
         }
 
         .product p {
@@ -187,7 +182,7 @@
         }
 
         footer {
-            background-color: #ff4081;
+            background-color: rgba(255, 64, 129, 0.7);
             color: white;
             padding: 20px 0;
             font-size: 1em;
@@ -264,7 +259,7 @@
             }
 
             rows.forEach(row => {
-                const columns = row.split(",").map(col => col.trim()); // Remover espaços extras de cada coluna
+                const columns = row.split(",").map(col => col.trim());
                 if (columns.length >= 4) {
                     const image = columns[0];
                     const name = columns[1];
@@ -279,7 +274,7 @@
                                 <p>${description}</p>
                                 <div class="price">R$ ${price}</div>
                                 <div class="button-group">
-                                    <a href="https://wa.me/553534703859?text=Estou%20interessado%20em%20${encodeURIComponent(name)}" class="btn" target="_blank">Comprar</a>
+                                    <a href="https://wa.me/553534703859?text=Quero%20comprar%20${encodeURIComponent(name)}" class="btn" target="_blank">Comprar</a>
                                 </div>
                             </div>
                         `;

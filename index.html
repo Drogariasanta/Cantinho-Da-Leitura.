@@ -200,6 +200,29 @@
             .product img {
                 height: 200px;
             }
+            .confetti {
+                width: 10px;
+                height: 10px;
+                animation-duration: 4s;
+            }
+            .header-masks {
+                font-size: 2.5em;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .confetti {
+                width: 8px;
+                height: 8px;
+                animation-duration: 3s;
+            }
+            .product {
+                padding: 15px;
+            }
+            .price {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -249,7 +272,7 @@
         }
 
         function parseCSV(data) {
-            const rows = data.split("\n").slice(1); // Remove a primeira linha (cabeçalho)
+            const rows = data.split("\n").slice(1);
             const productContainer = document.getElementById("productContainer");
             productContainer.innerHTML = "";
 

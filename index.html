@@ -1,333 +1,300 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Drogaria Santa Maria Pinheirinho</title>
-  <style>
-    :root {
-      --primary: #e53935;
-      --secondary: #c62828;
-      --accent: #e57373;
-      --text-color: #333;
-      --bg-color: #e8f5e9;
-      --footer-bg: #e53935;
-    }
-    /* Estilos base */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      height: 300px;
-      overflow: hidden;
-    }
-    header h1 {
-      font-size: 2.8em;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-      margin: 10px 0;
-      z-index: 1;
-    }
-    .carnaval-decorations {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2em;
-      animation: bounce 2s infinite;
-      z-index: 2;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-10px); }
-    }
-    nav {
-      text-align: center;
-      background-color: var(--secondary);
-      padding: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    nav label {
-      color: #fff;
-      font-size: 1em;
-      margin-right: 10px;
-    }
-    nav select {
-      padding: 10px;
-      font-size: 1em;
-      border: none;
-      border-radius: 5px;
-      background-color: var(--accent);
-      color: white;
-      transition: background-color 0.3s ease;
-    }
-    nav select:hover {
-      background-color: var(--secondary);
-    }
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-    }
-    #productContainer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .product {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      text-align: center;
-      flex: 1 1 calc(33.33% - 40px);
-      box-sizing: border-box;
-      min-height: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    }
-    .product img {
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      max-height: 150px;
-    }
-    .product h3 {
-      font-size: 1.1em;
-      margin: 10px 0;
-      color: #333;
-    }
-    .product p {
-      color: #666;
-      font-size: 0.9em;
-      margin-bottom: 10px;
-    }
-    .price {
-      color: var(--primary);
-      font-weight: bold;
-      font-size: 1.2em;
-      margin: 10px 0;
-    }
-    .button-group {
-      margin-top: 15px;
-    }
-    .button-group .btn {
-      background-color: #2e7d32;
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      font-size: 1em;
-      margin: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .button-group .btn:hover {
-      background-color: #1b5e20;
-    }
-    .button-group .btn.contact {
-      background-color: #43a047;
-    }
-    .button-group .btn.contact:hover {
-      background-color: #388e3c;
-    }
-    #cartButton {
-      background-color: #f44336;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 5px;
-      font-size: 1.2em;
-      position: fixed;
-      right: 10px;
-      bottom: 10%;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      z-index: 10;
-    }
-    #cartButton:hover {
-      background-color: #d32f2f;
-    }
-    footer {
-      background-color: var(--footer-bg);
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9em;
-      margin-top: 20px;
-    }
-    @media (max-width: 768px) {
-      header {
-        height: 220px; /* Altura reduzida para mobile */
-      }
-      header h1 {
-        font-size: 2em;
-      }
-      .carnaval-decorations {
-        font-size: 1.5em;
-        bottom: 10px;
-      }
-      #productContainer {
-        flex-direction: column;
-      }
-      .product {
-        flex: 1 1 100%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carnaval 2025 - Drogaria Santa Maria Pinheirinho</title>
+    <style>
+        /* Reset de estilos globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff4081, #ff9100, #ffd600, #00bcd4);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        /* Confetes animados - Realistas */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #ff5722;
+            opacity: 0;
+            animation: confetti 8s ease-in-out infinite;
+            transform-origin: center;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes confetti {
+            0% {top: -10px; opacity: 1; transform: rotate(0deg) scale(1);}
+            50% {top: 100%; opacity: 0.7; transform: rotate(720deg) scale(0.9);}
+            100% {top: -10px; opacity: 0; transform: rotate(1440deg) scale(1);}
+        }
+
+        /* Confetes com cores e tamanhos variados */
+        .confetti:nth-child(odd) {
+            background-color: #ff5722;
+            animation-delay: 0s;
+            width: 14px;
+            height: 14px;
+        }
+        .confetti:nth-child(even) {
+            background-color: #4caf50;
+            animation-delay: 1s;
+            width: 16px;
+            height: 16px;
+        }
+        .confetti:nth-child(3n) {
+            background-color: #2196f3;
+            animation-delay: 2s;
+            width: 18px;
+            height: 18px;
+        }
+        .confetti:nth-child(4n) {
+            background-color: #ffeb3b;
+            animation-delay: 0.5s;
+            width: 10px;
+            height: 10px;
+        }
+
+        /* Máscaras de Carnaval (usando emojis) */
+        .header-masks {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 3em;
+            z-index: 2;
+        }
+
+        .mask {
+            animation: floatMask 5s ease-in-out infinite;
+        }
+
+        @keyframes floatMask {
+            0%, 100% {
+                transform: rotate(-15deg) translateY(0);
+            }
+            50% {
+                transform: rotate(15deg) translateY(-25px);
+            }
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #ff4081;
+            color: #fff;
+            padding: 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        #productContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            font-size: 1.4em;
+            margin: 10px 0;
+            color: #ff5722;
+        }
+
+        .product p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff5722;
+            margin-bottom: 15px;
+        }
+
+        .button-group .btn {
+            display: inline-block;
+            padding: 14px 20px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background 0.3s;
+            margin: 10px;
+        }
+
+        .button-group .btn:hover {
+            background-color: #ff3d00;
+        }
+
+        footer {
+            background-color: #ff4081;
+            color: white;
+            padding: 20px 0;
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.5em;
+            }
+            .product h3 {
+                font-size: 1.2em;
+            }
+            .product img {
+                height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Drogaria Santa Maria Pinheirinho</h1>
-    <div class="carnaval-decorations">
-      <span>🎉</span>
-      <span>🎭</span>
-      <span>🥳</span>
-      <span>🎊</span>
+    <!-- Confetes animados -->
+    <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="confetti" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="confetti" style="left: 30%; animation-delay: 1s;"></div>
+    <div class="confetti" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="confetti" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="confetti" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="confetti" style="left: 70%; animation-delay: 0s;"></div>
+    <div class="confetti" style="left: 80%; animation-delay: 1s;"></div>
+    <div class="confetti" style="left: 90%; animation-delay: 1s;"></div>
+
+    <!-- Máscaras de Carnaval com Emojis -->
+    <div class="header-masks">
+        <div class="mask">🎭</div>
+        <div class="mask">👑</div>
+        <div class="mask">💃</div>
     </div>
-  </header>
 
-  <nav>
-    <label for="categoryFilter">Selecione uma Categoria:</label>
-    <select id="categoryFilter" onchange="filterByCategory()">
-      <!-- Categorias serão carregadas dinamicamente -->
-    </select>
-  </nav>
+    <!-- Cabeçalho -->
+    <header>Carnaval 2025 - Drogaria Santa Maria Pinheirinho</header>
 
-  <div class="container">
-    <h2 id="categoryTitle">Todos os Produtos</h2>
-    <div id="productContainer">
-      <!-- Produtos serão carregados dinamicamente -->
+    <div class="container">
+        <p id="loading">Carregando produtos para o Carnaval...</p>
+        <div id="productContainer"></div>
     </div>
-  </div>
 
-  <footer>
-    © 2024 Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.
-  </footer>
+    <footer>
+        &copy; 2025 - Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.
+    </footer>
 
-  <button id="cartButton" onclick="viewCart()">Ver Carrinho</button>
+    <script>
+        const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSWRKbzazcMWt0NBzU5t91uq40CVwG80y6Z4ZqLTjde4duDPlLk9vY2PJks1lm2ZkAv3REIrWJSp5ys/pub?output=csv";
 
-  <script>
-    // Link atualizado da planilha
-    const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSWRKbzazcMWt0NBzU5t91uq40CVwG80y6Z4ZqLTjde4duDPlLk9vY2PJks1lm2ZkAv3REIrWJSp5ys/pub?output=csv";
-
-    let cart = [];
-    let allProducts = [];
-
-    async function fetchData() {
-      if (allProducts.length === 0) {
-        const response = await fetch(spreadsheetUrl);
-        const data = await response.text();
-        allProducts = parseCSV(data);
-      }
-      return allProducts;
-    }
-
-    function parseCSV(data) {
-      const rows = data.split("\n");
-      const headers = rows[0].split(",");
-      return rows.slice(1).map(row => {
-        const values = row.split(",");
-        return headers.reduce((acc, header, index) => {
-          acc[header.trim()] = values[index]?.trim();
-          return acc;
-        }, {});
-      });
-    }
-
-    function populateCategories(products) {
-      const categoryFilter = document.getElementById("categoryFilter");
-      const uniqueCategories = new Set(products.map(p => p["Categoria"]).filter(c => c));
-      const sortedCategories = ["Todos", ...Array.from(uniqueCategories).sort()];
-      sortedCategories.forEach(category => {
-        categoryFilter.innerHTML += `<option value="${category}">${category}</option>`;
-      });
-    }
-
-    function populateProducts(products) {
-      const productContainer = document.getElementById("productContainer");
-      productContainer.innerHTML = "";
-      products.forEach(product => {
-        if (product["Nome do Produto"] && product["Categoria"]) {
-          const categoryClass = product["Categoria"].toLowerCase().replace(/\s+/g, '-');
-          const productElement = 
-            `<div class="product ${categoryClass}">
-              <img src="${product["Imagem"]}" alt="${product["Nome do Produto"]}">
-              <h3>${product["Nome do Produto"]}</h3>
-              <p>${product["Descrição do Produto"]}</p>
-              <div class="price">${product["Preço"]}</div>
-              <div class="button-group">
-                <button class="btn" onclick="addToCart('${product["Nome do Produto"]}', '${product["Preço"]}')">Adicionar ao Carrinho</button>
-                <a href="https://wa.me/553534703859?text=Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20${encodeURIComponent(product["Nome do Produto"])}" class="btn contact" target="_blank">Entrar em Contato</a>
-              </div>
-            </div>`;
-          productContainer.innerHTML += productElement;
+        async function fetchData() {
+            try {
+                const response = await fetch(spreadsheetUrl);
+                const data = await response.text();
+                parseCSV(data);
+            } catch (error) {
+                document.getElementById("loading").innerText = "Erro ao carregar produtos.";
+                console.error("Erro ao carregar dados da planilha:", error);
+            }
         }
-      });
-    }
 
-    function addToCart(name, price) {
-      cart.push({ name, price });
-      alert(`${name} foi adicionado ao carrinho!`);
-    }
+        function parseCSV(data) {
+            const rows = data.split("\n").slice(1); // Remove a primeira linha (cabeçalho)
+            const productContainer = document.getElementById("productContainer");
+            productContainer.innerHTML = "";
 
-    function viewCart() {
-      if (cart.length === 0) {
-        alert("Seu carrinho está vazio.");
-      } else {
-        let cartContent = "Itens no carrinho:\n";
-        let total = 0;
-        cart.forEach(item => {
-          cartContent += `${item.name} - ${item.price}\n`;
-          total += parseFloat(item.price.replace("R$", "").trim());
-        });
-        total = total.toFixed(2);
-        const customerName = prompt("Digite seu nome:");
-        const paymentMethod = prompt("Digite a forma de pagamento:");
-        const address = prompt("Digite seu endereço:");
-        const orderMessage = `Pedido de ${customerName}:\n${cartContent}Total: R$ ${total}\nForma de pagamento: ${paymentMethod}\nEndereço: ${address}`;
-        const whatsappUrl = `https://wa.me/553534703859?text=${encodeURIComponent(orderMessage)}`;
-        window.open(whatsappUrl, "_blank");
-      }
-    }
+            if (rows.length === 0) {
+                document.getElementById("loading").innerText = "Nenhum produto encontrado.";
+                return;
+            }
 
-    async function init() {
-      const products = await fetchData();
-      populateCategories(products);
-      populateProducts(products);
-    }
+            rows.forEach(row => {
+                const columns = row.split(",").map(col => col.trim()); // Remover espaços extras de cada coluna
+                if (columns.length >= 4) {
+                    const image = columns[0];
+                    const name = columns[1];
+                    const description = columns[2];
+                    const price = columns[3];
 
-    function filterByCategory() {
-      const selectedCategory = document.getElementById("categoryFilter").value;
-      document.getElementById("categoryTitle").textContent = selectedCategory === "Todos" ? "Todos os Produtos" : selectedCategory;
-      const filteredProducts = selectedCategory === "Todos" 
-        ? allProducts 
-        : allProducts.filter(product => product["Categoria"] === selectedCategory);
-      populateProducts(filteredProducts);
-    }
+                    if (image && name && price) {
+                        productContainer.innerHTML += `
+                            <div class="product">
+                                <img src="${image}" alt="${name}">
+                                <h3>${name}</h3>
+                                <p>${description}</p>
+                                <div class="price">R$ ${price}</div>
+                                <div class="button-group">
+                                    <a href="https://wa.me/553534703859?text=Estou%20interessado%20em%20${encodeURIComponent(name)}" class="btn" target="_blank">Comprar</a>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            });
 
-    init();
-  </script>
+            if (productContainer.innerHTML === "") {
+                document.getElementById("loading").innerText = "Nenhum produto encontrado.";
+            }
+
+            document.getElementById("loading").style.display = "none";
+        }
+
+        fetchData();
+    </script>
 </body>
 </html>

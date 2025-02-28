@@ -23,7 +23,7 @@
       --accent-color: #00bcd4;
       --light-color: #fff;
       --dark-color: #f1f1f1;
-      --header-bg: #0d47a1; /* azul escuro no lugar do preto */
+      --header-bg: #0d47a1; /* azul escuro */
       --transition-speed: 0.3s;
     }
     html {
@@ -37,14 +37,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: #0d47a1; /* alterado para azul */
+      background: #0d47a1;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 300;
     }
     #preloader .spinner {
-      border: 4px solid #0d47a1; /* alterado para azul */
+      border: 4px solid #0d47a1;
       border-top: 4px solid var(--primary-color);
       border-radius: 50%;
       width: 50px;
@@ -99,28 +99,28 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background: rgba(13,71,161,0.7); /* overlay azul */
+      background: rgba(13,71,161,0.7);
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
     .modal-content {
-      background-color: #0d47a1; /* azul escuro */
+      background-color: #0d47a1;
       padding: 30px;
       border-radius: 10px;
       text-align: center;
       max-width: 400px;
       width: 90%;
       position: relative;
-      box-shadow: 0 8px 25px rgba(13,71,161,0.4); /* sombra azul */
+      box-shadow: 0 8px 25px rgba(13,71,161,0.4);
     }
     .modal-content h2 {
       margin-bottom: 15px;
-      color: var(--primary-color);
+      color: var(--light-color); /* texto branco */
     }
     .modal-content p {
       margin-bottom: 20px;
-      color: var(--dark-color);
+      color: var(--light-color); /* texto branco */
     }
     .modal-btn {
       background: var(--primary-color);
@@ -139,15 +139,17 @@
       right: 15px;
       font-size: 1.5em;
       cursor: pointer;
-      color: var(--dark-color);
+      color: var(--light-color);
     }
     /* Cabeçalho e Navegação */
     header {
       background: var(--header-bg);
       padding: 20px 0;
-      box-shadow: 0 4px 15px rgba(13,71,161,0.4); /* sombra azul */
-      position: sticky;
+      box-shadow: 0 4px 15px rgba(13,71,161,0.4);
+      position: fixed; /* fixo no topo */
       top: 0;
+      left: 0;
+      width: 100%;
       z-index: 150;
       transition: padding 0.3s;
     }
@@ -215,7 +217,7 @@
     /* Container Principal */
     .container {
       max-width: 1200px;
-      margin: 40px auto;
+      margin: 120px auto 40px; /* adicionada margem superior para compensar o cabeçalho fixo */
       padding: 0 20px;
       z-index: 3;
       position: relative;
@@ -228,10 +230,10 @@
       padding: 20px 0;
     }
     .product {
-      background: #0d47a1; /* azul escuro */
+      background: #0d47a1;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(13,71,161,0.3); /* sombra azul */
+      box-shadow: 0 4px 15px rgba(13,71,161,0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
@@ -243,14 +245,14 @@
     }
     .product:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(13,71,161,0.4); /* sombra azul */
+      box-shadow: 0 12px 25px rgba(13,71,161,0.4);
     }
     .product img {
       width: 100%;
       height: 200px;
-      object-fit: cover;
+      object-fit: contain; /* exibe a imagem inteira sem cortar */
       transition: transform 0.3s ease;
-      border-bottom: 1px solid #0d47a1; /* azul */
+      border-bottom: 1px solid #0d47a1;
       loading: lazy;
     }
     .product:hover img {
@@ -261,19 +263,19 @@
     }
     .product-content h3 {
       font-size: 1.5em;
-      color: var(--primary-color);
+      color: var(--light-color); /* texto branco */
       margin-bottom: 10px;
     }
     .product-content p {
       font-size: 1em;
-      color: #aaa;
+      color: var(--light-color); /* texto branco */
       margin-bottom: 15px;
       min-height: 50px;
     }
     .price {
       font-size: 1.3em;
       font-weight: 600;
-      color: var(--primary-color);
+      color: var(--light-color); /* texto branco */
       margin-bottom: 15px;
     }
     .button-group {
@@ -355,10 +357,10 @@
         gap: 5px;
       }
       header {
-        padding: 5px 0; /* redução do padding */
+        padding: 5px 0;
       }
       header h1 {
-        font-size: 1.4em; /* diminuição do tamanho do cabeçalho */
+        font-size: 1.4em;
       }
       nav ul {
         flex-direction: column;
@@ -373,6 +375,10 @@
       .cta-banner {
         font-size: 1em;
         padding: 10px;
+      }
+      /* Ajusta a margem superior do container para cabeçalho menor */
+      .container {
+        margin-top: 80px;
       }
     }
   </style>

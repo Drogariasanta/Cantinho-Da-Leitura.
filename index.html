@@ -161,8 +161,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      /* Removendo o wrap para evitar empilhamento */
-      flex-wrap: nowrap;
+      /* No desktop, os itens ficam na mesma linha */
+      flex-direction: row;
     }
     header h1 {
       font-size: 2.2em;
@@ -183,17 +183,13 @@
       transition: background 0.3s ease;
       border-radius: 4px;
     }
-    nav ul li a:hover {
-      background: rgba(255,255,255,0.2);
-    }
+    nav ul li a:hover { background: rgba(255,255,255,0.2); }
     .header-masks {
       display: flex;
       gap: 15px;
       font-size: 2em;
     }
-    .mask {
-      animation: floatMask 5s ease-in-out infinite;
-    }
+    .mask { animation: floatMask 5s ease-in-out infinite; }
     @keyframes floatMask {
       0%, 100% { transform: translateY(0) rotate(-10deg); }
       50% { transform: translateY(-10px) rotate(10deg); }
@@ -215,7 +211,7 @@
     /* Container Principal */
     .container {
       max-width: 1200px;
-      margin: 120px auto 40px; /* margem superior para compensar o cabeçalho fixo */
+      margin: 120px auto 40px; /* margem para compensar o cabeçalho fixo */
       padding: 0 20px;
       z-index: 3;
       position: relative;
@@ -249,19 +245,17 @@
     .product img {
       width: 100%;
       height: 200px;
-      object-fit: cover; /* a imagem preenche o espaço sem distorção */
-      transition: transform 0.3s ease;
-      /* Arredonda apenas os cantos superiores para integrar com a div */
+      object-fit: contain; /* mostra a imagem inteira */
+      display: block;
+      /* Mantém os cantos superiores arredondados */
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
-      display: block;
     }
     .product:hover img {
       transform: scale(1.05);
+      transition: transform 0.3s ease;
     }
-    .product-content {
-      padding: 15px;
-    }
+    .product-content { padding: 15px; }
     .product-content h3 {
       font-size: 1.5em;
       color: var(--light-color);
@@ -279,10 +273,7 @@
       color: var(--light-color);
       margin-bottom: 15px;
     }
-    .button-group {
-      text-align: center;
-      margin-bottom: 10px;
-    }
+    .button-group { text-align: center; margin-bottom: 10px; }
     .btn {
       display: inline-block;
       padding: 10px 20px;
@@ -353,27 +344,32 @@
     
     /* Responsividade */
     @media (max-width: 768px) {
+      /* No mobile, o cabeçalho torna-se estático para evitar cortes */
+      header { position: static; padding: 10px 0; }
       .header-container {
-        /* Mantém os itens lado a lado mesmo em telas menores */
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
       }
-      header { padding: 5px 0; }
-      header h1 { font-size: 1.4em; }
+      /* Linha 1: Título */
+      header h1 { font-size: 1.8em; }
+      /* Linha 2: Navegação */
+      nav {
+        margin-top: 10px;
+      }
       nav ul {
         flex-direction: row;
         gap: 10px;
       }
+      /* Linha 3: Emojis */
       .header-masks {
-        font-size: 1.6em;
-        margin-left: 10px;
+        margin-top: 10px;
+        justify-content: center;
       }
+      /* Ajusta a margem do container para compensar o cabeçalho */
+      .container { margin-top: 20px; }
+      /* Imagens com altura um pouco reduzida */
       .product img { height: 180px; }
       .cta-banner { font-size: 1em; padding: 10px; }
-      /* Ajusta a margem superior do container para o cabeçalho fixo */
-      .container { margin-top: 80px; }
     }
   </style>
 </head>
@@ -497,10 +493,10 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Cabeçalho encolhe ao rolar a página
+    // Cabeçalho encolhe ao rolar a página (no desktop)
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
+      if (window.innerWidth > 768 && window.scrollY > 50) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');

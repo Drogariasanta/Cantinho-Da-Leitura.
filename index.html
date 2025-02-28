@@ -22,25 +22,21 @@
       --tertiary-color: #ffd600;
       --accent-color: #00bcd4;
       --light-color: #fff;
-      --dark-color: #333;
+      --dark-color: #f1f1f1;
+      --header-bg: #1e1e1e;
       --transition-speed: 0.3s;
     }
     html {
       scroll-behavior: smooth;
     }
+    /* Modo Escuro Exclusivo */
     body {
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--tertiary-color), var(--accent-color));
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background: linear-gradient(45deg, #121212, #1e1e1e);
       color: var(--dark-color);
       line-height: 1.6;
       position: relative;
       overflow-x: hidden;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      transition: background var(--transition-speed);
     }
     /* Preloader */
     #preloader {
@@ -49,14 +45,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: var(--light-color);
+      background: #121212;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 300;
     }
     #preloader .spinner {
-      border: 4px solid #f3f3f3;
+      border: 4px solid #333;
       border-top: 4px solid var(--primary-color);
       border-radius: 50%;
       width: 50px;
@@ -117,14 +113,14 @@
       padding: 20px;
     }
     .modal-content {
-      background-color: var(--light-color);
+      background-color: #1e1e1e;
       padding: 30px;
       border-radius: 10px;
       text-align: center;
       max-width: 400px;
       width: 90%;
       position: relative;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
     .modal-content h2 {
       margin-bottom: 15px;
@@ -153,32 +149,18 @@
       cursor: pointer;
       color: var(--dark-color);
     }
-    /* Dark Mode Toggle */
-    #darkModeToggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--light-color);
-      color: var(--dark-color);
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 250;
-      transition: background var(--transition-speed);
-    }
-    #darkModeToggle:hover {
-      background: #e0e0e0;
-    }
-    /* Header e Navegação */
+    /* Cabeçalho e Navegação */
     header {
-      background: rgba(255, 64, 129, 0.95);
+      background: var(--header-bg);
       padding: 20px 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
       position: sticky;
       top: 0;
       z-index: 150;
-      background-attachment: fixed;
+      transition: padding 0.3s;
+    }
+    header.scrolled {
+      padding: 10px 0;
     }
     .header-container {
       max-width: 1200px;
@@ -193,6 +175,10 @@
       font-size: 2.2em;
       color: var(--light-color);
       letter-spacing: 1px;
+      transition: font-size 0.3s;
+    }
+    header.scrolled h1 {
+      font-size: 1.8em;
     }
     nav ul {
       list-style: none;
@@ -222,6 +208,18 @@
       0%, 100% { transform: translateY(0) rotate(-10deg); }
       50% { transform: translateY(-10px) rotate(10deg); }
     }
+    /* Faixa de Call-to-Action (CTA) */
+    .cta-banner {
+      background: var(--primary-color);
+      color: var(--light-color);
+      padding: 15px;
+      text-align: center;
+      border-radius: 6px;
+      margin: 20px auto;
+      max-width: 800px;
+      font-size: 1.2em;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
     /* Container Principal */
     .container {
       max-width: 1200px;
@@ -238,10 +236,10 @@
       padding: 20px 0;
     }
     .product {
-      background: var(--light-color);
+      background: #1e1e1e;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
       transform: translateY(20px);
@@ -253,14 +251,14 @@
     }
     .product:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
     }
     .product img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       transition: transform 0.3s ease;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #333;
       loading: lazy;
     }
     .product:hover img {
@@ -276,7 +274,7 @@
     }
     .product-content p {
       font-size: 1em;
-      color: #777;
+      color: #aaa;
       margin-bottom: 15px;
       min-height: 50px;
     }
@@ -306,7 +304,6 @@
       background-color: #e73370;
       transform: translateY(-2px);
     }
-    /* Efeito Ripple nos Botões */
     .btn:active::after {
       content: "";
       position: absolute;
@@ -345,7 +342,7 @@
     }
     /* Footer */
     footer {
-      background: rgba(255, 64, 129, 0.95);
+      background: var(--header-bg);
       color: var(--light-color);
       text-align: center;
       padding: 20px 0;
@@ -377,10 +374,14 @@
       .product img {
         height: 180px;
       }
+      .cta-banner {
+        font-size: 1em;
+        padding: 10px;
+      }
     }
   </style>
 </head>
-<body>
+<body class="dark-mode">
   <!-- Preloader -->
   <div id="preloader"><div class="spinner"></div></div>
   
@@ -389,9 +390,6 @@
   
   <!-- Container para Confetes (gerados dinamicamente) -->
   <div id="confetti-container"></div>
-
-  <!-- Dark Mode Toggle -->
-  <button id="darkModeToggle">Dark Mode</button>
 
   <!-- Modal de Boas-Vindas -->
   <div id="inicioModal" class="modal">
@@ -404,7 +402,7 @@
   </div>
 
   <!-- Cabeçalho com Navegação e Máscaras Decorativas -->
-  <header>
+  <header id="header">
     <div class="header-container">
       <h1>Carnaval 2025</h1>
       <nav>
@@ -424,6 +422,9 @@
 
   <!-- Conteúdo Principal -->
   <div class="container">
+    <div class="cta-banner">
+      Confira nosso catálogo de produtos exclusivos para o Carnaval 2025!
+    </div>
     <p id="loading" style="text-align: center; margin-top: 20px;">Carregando produtos para o Carnaval...</p>
     <div id="productContainer"></div>
   </div>
@@ -435,7 +436,7 @@
   <footer id="contato">
     <div class="footer-container">
       <p>&copy; 2025 - Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.</p>
-      <p>Fale conosco: WhatsApp (35) 34703859 | Email: contato@drogariasantamaria.com</p>
+      <p>Fale conosco: WhatsApp (35) 34703859</p>
     </div>
   </footer>
 
@@ -470,21 +471,6 @@
       confettiContainer.appendChild(confetti);
     }
 
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    darkModeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      if(document.body.classList.contains('dark-mode')) {
-        darkModeToggle.textContent = 'Light Mode';
-        document.body.style.background = '#121212';
-        document.body.style.color = '#f1f1f1';
-      } else {
-        darkModeToggle.textContent = 'Dark Mode';
-        document.body.style.background = '';
-        document.body.style.color = '';
-      }
-    });
-
     // Modal de Boas-Vindas
     const inicioLink = document.getElementById('inicioLink');
     const inicioModal = document.getElementById('inicioModal');
@@ -513,6 +499,16 @@
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Cabeçalho encolhe ao rolar a página
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     });
 
     // Carregamento e Animação dos Produtos via CSV

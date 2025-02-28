@@ -1,300 +1,585 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carnaval 2025 - Drogaria Santa Maria Pinheirinho</title>
-    <style>
-        /* Reset de estilos globais */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(45deg, #ff4081, #ff9100, #ffd600, #00bcd4);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #fff;
-            text-align: center;
-            position: relative;
-        }
-
-        @keyframes gradientBG {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-
-        /* Confetes animados - Realistas */
-        .confetti {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: #ff5722;
-            opacity: 0;
-            animation: confetti 8s ease-in-out infinite;
-            transform-origin: center;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes confetti {
-            0% {top: -10px; opacity: 1; transform: rotate(0deg) scale(1);}
-            50% {top: 100%; opacity: 0.7; transform: rotate(720deg) scale(0.9);}
-            100% {top: -10px; opacity: 0; transform: rotate(1440deg) scale(1);}
-        }
-
-        /* Confetes com cores e tamanhos variados */
-        .confetti:nth-child(odd) {
-            background-color: #ff5722;
-            animation-delay: 0s;
-            width: 14px;
-            height: 14px;
-        }
-        .confetti:nth-child(even) {
-            background-color: #4caf50;
-            animation-delay: 1s;
-            width: 16px;
-            height: 16px;
-        }
-        .confetti:nth-child(3n) {
-            background-color: #2196f3;
-            animation-delay: 2s;
-            width: 18px;
-            height: 18px;
-        }
-        .confetti:nth-child(4n) {
-            background-color: #ffeb3b;
-            animation-delay: 0.5s;
-            width: 10px;
-            height: 10px;
-        }
-
-        /* Máscaras de Carnaval (usando emojis) */
-        .header-masks {
-            position: absolute;
-            top: -70px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            font-size: 3em;
-            z-index: 2;
-        }
-
-        .mask {
-            animation: floatMask 5s ease-in-out infinite;
-        }
-
-        @keyframes floatMask {
-            0%, 100% {
-                transform: rotate(-15deg) translateY(0);
-            }
-            50% {
-                transform: rotate(15deg) translateY(-25px);
-            }
-        }
-
-        /* Cabeçalho */
-        header {
-            background-color: #ff4081;
-            color: #fff;
-            padding: 20px;
-            font-size: 2.5em;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 3;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        #productContainer {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .product {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .product:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .product img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .product h3 {
-            font-size: 1.4em;
-            margin: 10px 0;
-            color: #ff5722;
-        }
-
-        .product p {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ff5722;
-            margin-bottom: 15px;
-        }
-
-        .button-group .btn {
-            display: inline-block;
-            padding: 14px 20px;
-            background-color: #ff5722;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            transition: background 0.3s;
-            margin: 10px;
-        }
-
-        .button-group .btn:hover {
-            background-color: #ff3d00;
-        }
-
-        footer {
-            background-color: #ff4081;
-            color: white;
-            padding: 20px 0;
-            font-size: 1em;
-            text-transform: uppercase;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            header {
-                font-size: 1.5em;
-            }
-            .product h3 {
-                font-size: 1.2em;
-            }
-            .product img {
-                height: 200px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnaval 2025 - Drogaria Santa Maria Pinheirinho</title>
+  <meta name="description" content="Confira o nosso catálogo de produtos para o Carnaval 2025 na Drogaria Santa Maria Pinheirinho. Produtos exclusivos e promoções especiais.">
+  <link rel="icon" href="favicon.ico">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset e variáveis */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    :root {
+      --primary-color: #ff4081;
+      --secondary-color: #ff9100;
+      --tertiary-color: #ffd600;
+      --accent-color: #00bcd4;
+      --light-color: #fff;
+      --dark-color: #333;
+      --transition-speed: 0.3s;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--tertiary-color), var(--accent-color));
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--dark-color);
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--light-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+    }
+    #preloader .spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Scroll Progress Bar */
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 5px;
+      background: var(--primary-color);
+      z-index: 250;
+    }
+    /* Container para confetes (gerado dinamicamente) */
+    #confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .confetti {
+      position: absolute;
+      background-color: #ff5722;
+      opacity: 0;
+      border-radius: 3px;
+      transform: translateY(-100px) rotate(0deg);
+      animation: confettiFall linear infinite;
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      80% { opacity: 0.8; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+    /* Modal de Boas-Vindas */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      background-color: var(--light-color);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    .modal-content h2 {
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+    .modal-content p {
+      margin-bottom: 20px;
+      color: var(--dark-color);
+    }
+    .modal-btn {
+      background: var(--primary-color);
+      color: var(--light-color);
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .modal-btn:hover {
+      background: #e73370;
+    }
+    .modal .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: var(--dark-color);
+    }
+    /* Dark Mode Toggle */
+    #darkModeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--light-color);
+      color: var(--dark-color);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 250;
+      transition: background var(--transition-speed);
+    }
+    #darkModeToggle:hover {
+      background: #e0e0e0;
+    }
+    /* Header e Navegação */
+    header {
+      background: rgba(255, 64, 129, 0.95);
+      padding: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 150;
+      background-attachment: fixed;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      font-size: 2.2em;
+      color: var(--light-color);
+      letter-spacing: 1px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav ul li a {
+      color: var(--light-color);
+      text-decoration: none;
+      padding: 8px 12px;
+      transition: background 0.3s ease;
+      border-radius: 4px;
+    }
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .header-masks {
+      display: flex;
+      gap: 15px;
+      font-size: 2em;
+      margin-top: 10px;
+    }
+    .mask {
+      animation: floatMask 5s ease-in-out infinite;
+    }
+    @keyframes floatMask {
+      0%, 100% { transform: translateY(0) rotate(-10deg); }
+      50% { transform: translateY(-10px) rotate(10deg); }
+    }
+    /* Container Principal */
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      z-index: 3;
+      position: relative;
+    }
+    /* Grid de Produtos */
+    #productContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px 0;
+    }
+    .product {
+      background: var(--light-color);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .product.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .product:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      border-bottom: 1px solid #eee;
+      loading: lazy;
+    }
+    .product:hover img {
+      transform: scale(1.05);
+    }
+    .product-content {
+      padding: 15px;
+    }
+    .product-content h3 {
+      font-size: 1.5em;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    .product-content p {
+      font-size: 1em;
+      color: #777;
+      margin-bottom: 15px;
+      min-height: 50px;
+    }
+    .price {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+    .button-group {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: var(--light-color);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 1em;
+      transition: background 0.3s ease, transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover {
+      background-color: #e73370;
+      transform: translateY(-2px);
+    }
+    /* Efeito Ripple nos Botões */
+    .btn:active::after {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple 0.6s linear;
+    }
+    @keyframes ripple {
+      to { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+    }
+    /* Botão Back-to-Top */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-color);
+      color: var(--light-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      font-size: 1.2em;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 150;
+    }
+    #backToTop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* Footer */
+    footer {
+      background: rgba(255, 64, 129, 0.95);
+      color: var(--light-color);
+      text-align: center;
+      padding: 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9em;
+      position: relative;
+      z-index: 3;
+    }
+    .footer-container p {
+      margin: 5px 0;
+    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      header h1 {
+        font-size: 1.8em;
+      }
+      nav ul {
+        flex-direction: column;
+      }
+      .header-masks {
+        font-size: 1.8em;
+      }
+      .product img {
+        height: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Confetes animados -->
-    <div class="confetti" style="left: 10%; animation-delay: 0s;"></div>
-    <div class="confetti" style="left: 20%; animation-delay: 2s;"></div>
-    <div class="confetti" style="left: 30%; animation-delay: 1s;"></div>
-    <div class="confetti" style="left: 40%; animation-delay: 0.5s;"></div>
-    <div class="confetti" style="left: 50%; animation-delay: 1.5s;"></div>
-    <div class="confetti" style="left: 60%; animation-delay: 2.5s;"></div>
-    <div class="confetti" style="left: 70%; animation-delay: 0s;"></div>
-    <div class="confetti" style="left: 80%; animation-delay: 1s;"></div>
-    <div class="confetti" style="left: 90%; animation-delay: 1s;"></div>
+  <!-- Preloader -->
+  <div id="preloader"><div class="spinner"></div></div>
+  
+  <!-- Scroll Progress Bar -->
+  <div id="progressBar"></div>
+  
+  <!-- Container para Confetes (gerados dinamicamente) -->
+  <div id="confetti-container"></div>
 
-    <!-- Máscaras de Carnaval com Emojis -->
-    <div class="header-masks">
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle">Dark Mode</button>
+
+  <!-- Modal de Boas-Vindas -->
+  <div id="inicioModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Bem-vindo!</h2>
+      <p>Dê uma olhada no nosso catálogo de produtos.</p>
+      <a href="https://drogariasanta.github.io/Catalogo-de-Produtos/" class="modal-btn" target="_blank">Ver Catálogo</a>
+    </div>
+  </div>
+
+  <!-- Cabeçalho com Navegação e Máscaras Decorativas -->
+  <header>
+    <div class="header-container">
+      <h1>Carnaval 2025</h1>
+      <nav>
+        <ul>
+          <li><a href="#" id="inicioLink">Início</a></li>
+          <li><a href="#productContainer">Produtos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="header-masks">
         <div class="mask">🎭</div>
         <div class="mask">👑</div>
         <div class="mask">💃</div>
+      </div>
     </div>
+  </header>
 
-    <!-- Cabeçalho -->
-    <header>Carnaval 2025 - Drogaria Santa Maria Pinheirinho</header>
+  <!-- Conteúdo Principal -->
+  <div class="container">
+    <p id="loading" style="text-align: center; margin-top: 20px;">Carregando produtos para o Carnaval...</p>
+    <div id="productContainer"></div>
+  </div>
 
-    <div class="container">
-        <p id="loading">Carregando produtos para o Carnaval...</p>
-        <div id="productContainer"></div>
+  <!-- Botão Back-to-Top -->
+  <button id="backToTop">↑</button>
+
+  <!-- Rodapé -->
+  <footer id="contato">
+    <div class="footer-container">
+      <p>&copy; 2025 - Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.</p>
+      <p>Fale conosco: WhatsApp (35) 34703859 | Email: contato@drogariasantamaria.com</p>
     </div>
+  </footer>
 
-    <footer>
-        &copy; 2025 - Drogaria Santa Maria Pinheirinho. Todos os direitos reservados.
-    </footer>
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      preloader.style.opacity = '0';
+      setTimeout(() => preloader.style.display = 'none', 500);
+    });
 
-    <script>
-        const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSWRKbzazcMWt0NBzU5t91uq40CVwG80y6Z4ZqLTjde4duDPlLk9vY2PJks1lm2ZkAv3REIrWJSp5ys/pub?output=csv";
+    // Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
 
-        async function fetchData() {
-            try {
-                const response = await fetch(spreadsheetUrl);
-                const data = await response.text();
-                parseCSV(data);
-            } catch (error) {
-                document.getElementById("loading").innerText = "Erro ao carregar produtos.";
-                console.error("Erro ao carregar dados da planilha:", error);
-            }
+    // Geração Dinâmica de Confetes (150)
+    const confettiContainer = document.getElementById('confetti-container');
+    const totalConfetti = 150;
+    for (let i = 0; i < totalConfetti; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.width = confetti.style.height = (Math.random() * 8 + 4) + 'px';
+      const colors = ['#ff5722', '#4caf50', '#2196f3', '#ffeb3b'];
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      confetti.style.animationDelay = Math.random() * 5 + 's';
+      confettiContainer.appendChild(confetti);
+    }
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if(document.body.classList.contains('dark-mode')) {
+        darkModeToggle.textContent = 'Light Mode';
+        document.body.style.background = '#121212';
+        document.body.style.color = '#f1f1f1';
+      } else {
+        darkModeToggle.textContent = 'Dark Mode';
+        document.body.style.background = '';
+        document.body.style.color = '';
+      }
+    });
+
+    // Modal de Boas-Vindas
+    const inicioLink = document.getElementById('inicioLink');
+    const inicioModal = document.getElementById('inicioModal');
+    const closeModal = document.querySelector('.modal .close');
+    inicioLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      inicioModal.style.display = 'flex';
+    });
+    closeModal.addEventListener('click', () => {
+      inicioModal.style.display = 'none';
+    });
+    window.addEventListener('click', (e) => {
+      if (e.target == inicioModal) {
+        inicioModal.style.display = 'none';
+      }
+    });
+
+    // Botão Back-to-Top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Carregamento e Animação dos Produtos via CSV
+    const spreadsheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSWRKbzazcMWt0NBzU5t91uq40CVwG80y6Z4ZqLTjde4duDPlLk9vY2PJks1lm2ZkAv3REIrWJSp5ys/pub?output=csv";
+    async function fetchData() {
+      try {
+        const response = await fetch(spreadsheetUrl);
+        const data = await response.text();
+        parseCSV(data);
+      } catch (error) {
+        document.getElementById("loading").innerText = "Erro ao carregar produtos.";
+        console.error("Erro ao carregar dados:", error);
+      }
+    }
+    function parseCSV(data) {
+      const rows = data.split("\n").slice(1);
+      const productContainer = document.getElementById("productContainer");
+      productContainer.innerHTML = "";
+      if (rows.length === 0) {
+        document.getElementById("loading").innerText = "Nenhum produto encontrado.";
+        return;
+      }
+      rows.forEach(row => {
+        const columns = row.split(",").map(col => col.trim());
+        if (columns.length >= 4) {
+          const image = columns[0];
+          const name = columns[1];
+          const description = columns[2];
+          const price = columns[3];
+          if (image && name && price) {
+            productContainer.innerHTML += `
+              <div class="product">
+                <img src="${image}" alt="${name}" loading="lazy">
+                <div class="product-content">
+                  <h3>${name}</h3>
+                  <p>${description}</p>
+                  <div class="price">R$ ${price}</div>
+                  <div class="button-group">
+                    <a href="https://wa.me/553534703859?text=Estou%20interessado%20em%20${encodeURIComponent(name)}" class="btn" target="_blank">Comprar</a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }
         }
-
-        function parseCSV(data) {
-            const rows = data.split("\n").slice(1); // Remove a primeira linha (cabeçalho)
-            const productContainer = document.getElementById("productContainer");
-            productContainer.innerHTML = "";
-
-            if (rows.length === 0) {
-                document.getElementById("loading").innerText = "Nenhum produto encontrado.";
-                return;
-            }
-
-            rows.forEach(row => {
-                const columns = row.split(",").map(col => col.trim()); // Remover espaços extras de cada coluna
-                if (columns.length >= 4) {
-                    const image = columns[0];
-                    const name = columns[1];
-                    const description = columns[2];
-                    const price = columns[3];
-
-                    if (image && name && price) {
-                        productContainer.innerHTML += `
-                            <div class="product">
-                                <img src="${image}" alt="${name}">
-                                <h3>${name}</h3>
-                                <p>${description}</p>
-                                <div class="price">R$ ${price}</div>
-                                <div class="button-group">
-                                    <a href="https://wa.me/553534703859?text=Estou%20interessado%20em%20${encodeURIComponent(name)}" class="btn" target="_blank">Comprar</a>
-                                </div>
-                            </div>
-                        `;
-                    }
-                }
-            });
-
-            if (productContainer.innerHTML === "") {
-                document.getElementById("loading").innerText = "Nenhum produto encontrado.";
-            }
-
-            document.getElementById("loading").style.display = "none";
-        }
-
-        fetchData();
-    </script>
+      });
+      if (productContainer.innerHTML === "") {
+        document.getElementById("loading").innerText = "Nenhum produto encontrado.";
+      } else {
+        document.getElementById("loading").style.display = "none";
+        animateProducts();
+      }
+    }
+    // Animação Fade-in dos Produtos com Intersection Observer
+    function animateProducts() {
+      const products = document.querySelectorAll('.product');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      products.forEach(product => observer.observe(product));
+    }
+    fetchData();
+  </script>
 </body>
 </html>
